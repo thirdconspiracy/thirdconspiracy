@@ -1,0 +1,9 @@
+﻿@using PingPong.Webs.Models;
+@{
+    ViewData["Title"] = "Welcome";
+}
+
+
+<h1>WELCOME TO TEAM @Model.Color!</h1>
+<p>Click&nbsp;<a asp-controller="Home" asp-action="Teams">Here</a>&nbsp;to see the full team rosters</p>
+<img class="paddle" src="@Model.Url" />

@@ -1,0 +1,55 @@
+﻿@{
+    ViewData["Title"] = "ACMEWeb";
+}
+
+<div class="text-left">
+    <h1>SIGN-UP</h1>
+    <p>Get ready for the 2019 Table Tennis Tourney! The company will be providing the food, drinks and equipment so just come prepared to have some fun!</p>
+    <div class="container-fluid">
+        <div class="row">
+        <div class="col">
+            <!--Form-->
+            <div class="row">
+                <form action="/Home/Welcome">
+                    <div class="align-items-start">
+                        <!--Name-->
+                        <div class="col-auto">
+                            <div class="input-group mb-3">
+                                <input name="name" id="name" class="form-control form-control-lg" placeholder="Name" type="text" required="true"/>
+                            </div>
+                        </div>
+                        <!--Email-->
+                        <div class="col-auto">
+                            <div class="input-group mb-3">
+                                <input name="email" id="email" class="form-control form-control-lg" placeholder="Email" type="text" required="true"/>
+                            </div>
+                        </div>
+                        <!--Shirt Size-->
+                        <div class="col-auto">
+                            <div class="input-group mb-3">
+                                <select class="form-control form-control-lg" name="shirtSize" id="shirtSize" required="true">
+                                    <option value="">- Shirt Size -</option>
+                                    <option value="0">XSmall</option>
+                                    <option value="1">Small</option>
+                                    <option value="2">Medium</option>
+                                    <option value="3">Large</option>
+                                    <option value="4">XLarge</option>
+                                </select>
+                            </div>
+                        </div>
+                        <!--Sign Up-->
+                        <div class="form-group">
+                            <div class="col-sm-10">
+                                <button type="submit" class="btn btn-primary">Sign Up</button>
+                            </div>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <div class="col">
+            <img class="paddle float-right" src="/Assets/Paddle-Blue.png"/>
+        </div>
+        </div>
+    </div>
+</div>

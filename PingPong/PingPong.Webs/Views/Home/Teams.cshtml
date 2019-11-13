@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Teams";
+}
+
+<h1>TEAM ROSTERS</h1>
+
+<div class="container">
+
+    <div class="row">
+        <div class="col">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr class="bg-dark text-white" style="height: 50px">
+                        <td class="col">Black Team</td>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.BlackTeam)
+                {
+                    <tr style="height: 50px">
+                        <td>@item</td>
+                    </tr>
+                }
+            </table>
+        </div>
+        <div class="col">
+            <table class="table table-bordered">
+                <thead class="thead-dark">
+                    <tr class="bg-danger text-white" style="height: 50px">
+                        <td>Red Team</td>
+                    </tr>
+                </thead>
+                @foreach (var item in Model.RedTeam)
+                {
+                    <tr style="height: 50px">
+                        <td>@item</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+</div>
