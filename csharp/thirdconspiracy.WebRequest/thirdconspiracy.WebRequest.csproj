@@ -1,0 +1,17 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <TargetFramework>netcoreapp2.1</TargetFramework>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Folder Include="FTP\" />
+    <Folder Include="FtpLogger\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\thirdconspiracy.Logger\thirdconspiracy.Logger.csproj" />
+    <ProjectReference Include="..\thirdconspiracy.Utilities\thirdconspiracy.Utilities.csproj" />
+  </ItemGroup>
+
+</Project>
