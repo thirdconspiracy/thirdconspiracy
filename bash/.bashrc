@@ -116,10 +116,14 @@ if ! shopt -oq posix; then
   fi
 fi
 
-set -o vi
-
 # Install Ruby Gems to ~/gems
 export GEM_HOME="$HOME/gems"
 export PATH="$HOME/gems/bin:$PATH"
 
-cd /mnt/c/CADev/thirdconspiracy/jamstack
+# Set shell prompt options
+set -o vi
+parse_git_branch() {
+   git branch 2> /dev/null | sed -e '/^[^*]/d' -e 's/* \(.*\)/(\1)/'
+}
+export PS1="\[$(tput setaf 2)\]\u \[$(tput setaf 3)\]\w \[$(tput setaf 6)\]\$(parse_git_branch)\[$(tput sgr0)\]\n$ "
+
