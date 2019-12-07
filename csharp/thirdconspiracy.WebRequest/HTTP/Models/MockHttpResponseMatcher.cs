@@ -31,6 +31,11 @@ namespace thirdconspiracy.WebRequest.HTTP.Models
                    _urlPatternToMatch.IsMatch(request.FullUri.ToString());
         }
 
+        /// <summary>
+        /// Override this method if you want to use values from the request to populate the response
+        /// </summary>
+        /// <param name="request"></param>
+        /// <returns></returns>
         public virtual IHttpResponseModel Process(HttpRequestModel request)
         {
             var now = DateTimeOffset.UtcNow;
