@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Moq;
+using System;
 using System.Collections.Generic;
 using thirdconspiracy.WebRequest.HTTP.Models;
 using thirdconspiracy.WebRequest.HttpLogger.EventManager;
@@ -9,8 +10,8 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
     {
         #region Member Variables
 
-        public Queue<MockHttpResponseModel> MockResponseQueue { get; }
-            = new Queue<MockHttpResponseModel>();
+        public Queue<Mock<IHttpResponseModel>> MockResponseQueue { get; }
+            = new Queue<Mock<IHttpResponseModel>>();
 
         public List<MockHttpResponseMatcher> MockResponseLookup { get; }
             = new List<MockHttpResponseMatcher>();
@@ -24,7 +25,7 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
                 throw new ArgumentException("Client does not support request object type");
             }
 
-            MockHttpResponseModel response = null;
+            IHttpResponseModel response = null;
             Exception caughtException = null;
             try
             {
@@ -43,18 +44,21 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
             }
         }
 
-        private MockHttpResponseModel MockSend(HttpRequestModel request)
+        private IHttpResponseModel MockSend(HttpRequestModel request)
         {
-            MockHttpResponseModel mockResponse;
             if (MockResponseQueue.Count > 0)
             {
                 var sentAtUtc = DateTimeOffset.UtcNow - TimeSpan.FromSeconds(-1);
 
-                mockResponse = MockResponseQueue.Dequeue();
-                mockResponse.SentAtUtc = sentAtUtc;
-                mockResponse.CompletedAtUtc = DateTimeOffset.UtcNow;
+                var mockResponse = MockResponseQueue.Dequeue();
+                mockResponse
+                    .Setup(mr => mr.SentAtUtc)
+                    .Returns(sentAtUtc);
+                mockResponse
+                    .Setup(mr => mr.CompletedAtUtc)
+                    .Returns(DateTimeOffset.UtcNow);
 
-                return mockResponse;
+                return mockResponse.Object;
             }
 
             foreach (var lookupResponse in MockResponseLookup)
