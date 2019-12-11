@@ -6,12 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-  showSecret = false;
-  log = [];
+  serverElements = [
+    {type: 'server', name: 'TestServer1', content: 'my content'},
+    {type: 'server', name: 'TestServer2', content: 'my content'}
+  ];
 
-  onToggleDetails() {
-    this.showSecret = !this.showSecret;
-    // this.log.push(this.log.length + 1);
-    this.log.push(new Date());
-  }
 }
