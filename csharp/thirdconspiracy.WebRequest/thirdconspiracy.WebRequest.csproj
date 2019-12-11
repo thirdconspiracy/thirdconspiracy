@@ -5,8 +5,16 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Folder Include="FTP\" />
-    <Folder Include="FtpLogger\" />
+    <Compile Remove="FtpLogger\**" />
+    <Compile Remove="FTP\**" />
+    <EmbeddedResource Remove="FtpLogger\**" />
+    <EmbeddedResource Remove="FTP\**" />
+    <None Remove="FtpLogger\**" />
+    <None Remove="FTP\**" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="Moq" Version="4.13.1" />
   </ItemGroup>
 
   <ItemGroup>
