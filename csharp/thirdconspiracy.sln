@@ -7,15 +7,17 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "thirdconspiracy.Logger", "t
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "thirdconspiracy.WebRequest", "thirdconspiracy.WebRequest\thirdconspiracy.WebRequest.csproj", "{782CFDC1-240E-45D6-83D1-8597F7AD539F}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "thirdconspiracy.Utilities", "thirdconspiracy.Utilities\thirdconspiracy.Utilities.csproj", "{D626FEDD-4E07-4C88-BCF3-8245F5F6C662}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "thirdconspiracy.Utilities", "thirdconspiracy.Utilities\thirdconspiracy.Utilities.csproj", "{D626FEDD-4E07-4C88-BCF3-8245F5F6C662}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "thirdconspiracy.Utilities.UnitTests", "thirdconspiracy.Utilities.UnitTests\thirdconspiracy.Utilities.UnitTests.csproj", "{58F814B2-3366-4F18-9638-5CDACCE55124}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "thirdconspiracy.Utilities.UnitTests", "thirdconspiracy.Utilities.UnitTests\thirdconspiracy.Utilities.UnitTests.csproj", "{58F814B2-3366-4F18-9638-5CDACCE55124}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "thirdconspiracy.WebDriver", "thirdconspiracy.WebDriver\thirdconspiracy.WebDriver.csproj", "{F4890BD0-48B6-414E-A80B-765B2AE40B86}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "thirdconspiracy.WebDriver", "thirdconspiracy.WebDriver\thirdconspiracy.WebDriver.csproj", "{F4890BD0-48B6-414E-A80B-765B2AE40B86}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "thirdconspiracy.WebDriver.IntegrationTests", "thirdconspiracy.WebDriver.IntegrationTests\thirdconspiracy.WebDriver.IntegrationTests.csproj", "{FD99F098-DF36-464F-BAE7-76BCD4A072CC}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "thirdconspiracy.WebDriver.IntegrationTests", "thirdconspiracy.WebDriver.IntegrationTests\thirdconspiracy.WebDriver.IntegrationTests.csproj", "{FD99F098-DF36-464F-BAE7-76BCD4A072CC}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "thirdconspiracy.WebRequest.IntegrationTests", "thirdconspiracy.WebRequest.IntegrationTests\thirdconspiracy.WebRequest.IntegrationTests.csproj", "{8461E8A6-BD65-43BB-9608-7BA4F654969C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "thirdconspiracy.WebRequest.IntegrationTests", "thirdconspiracy.WebRequest.IntegrationTests\thirdconspiracy.WebRequest.IntegrationTests.csproj", "{8461E8A6-BD65-43BB-9608-7BA4F654969C}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "thirdconspiracy.Math", "thirdconspiracy.Math\thirdconspiracy.Math.csproj", "{C7B4F373-2B5D-4F68-B14D-BB9519DC4F50}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{8461E8A6-BD65-43BB-9608-7BA4F654969C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{8461E8A6-BD65-43BB-9608-7BA4F654969C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{8461E8A6-BD65-43BB-9608-7BA4F654969C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C7B4F373-2B5D-4F68-B14D-BB9519DC4F50}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C7B4F373-2B5D-4F68-B14D-BB9519DC4F50}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C7B4F373-2B5D-4F68-B14D-BB9519DC4F50}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C7B4F373-2B5D-4F68-B14D-BB9519DC4F50}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
