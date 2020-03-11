@@ -42,6 +42,60 @@ namespace thirdconspiracy.Utilities.Extensions
             }
         }
 
+        public static bool IsImeiType(this string imei)
+        {
+	        try
+	        {
+		        if (string.IsNullOrWhiteSpace(imei) || imei.Length > 15)
+		        {
+			        return false;
+		        }
+
+		        if (imei.Length < 15)
+		        {
+			        imei = imei.PadLeft(15, '0');
+		        }
+
+		        var digits = imei.ToCharArray()
+			        .Select(c => int.Parse(c.ToString()))
+			        .ToArray();
+
+		        var sum =
+			        digits[0] +
+			        ImeiDoubled(digits[1]) +
+			        digits[2] +
+			        ImeiDoubled(digits[3]) +
+			        digits[4] +
+			        ImeiDoubled(digits[5]) +
+			        digits[6] +
+			        ImeiDoubled(digits[7]) +
+			        digits[8] +
+			        ImeiDoubled(digits[9]) +
+			        digits[10] +
+			        ImeiDoubled(digits[11]) +
+			        digits[12] +
+			        ImeiDoubled(digits[13]);
+
+		        var checkDigit = 10 - (sum % 10);
+		        return digits[14] == checkDigit;
+	        }
+	        catch (Exception)
+	        {
+		        return false;
+	        }
+        }
+
+        private static int ImeiDoubled(int digit)
+        {
+	        var total = digit * 2;
+	        if (total < 10)
+	        {
+		        return total;
+	        }
+	        return total - 9;
+        }
+
+
         public static bool IsGtinType(this string gtin)
         {
             try

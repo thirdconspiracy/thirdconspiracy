@@ -7,10 +7,17 @@ namespace thirdconspiracy.Math.CycleDetection
 	public class FloydCycleDetection
 	{
 		/// <summary>
-		/// Given an array nums containing n + 1 integers where each integer is between 1 and n (inclusive),
-		/// prove that at least one duplicate number must exist. Assume that there is only one duplicate number, find the duplicate one.
+		/// Given
+		/// * an array of integers
+		/// Where
+		/// * length is n + 1
+		/// * and values are between 1 and n (inclusive)
+		/// * and there is one and only one duplicate number
+		/// Prove
+		/// * that at least one duplicate number must exist
+		/// * and determine that duplicate number
 		///
-		/// Note: if largest number is n and array length is n+1, then the largest number would at most point to ending index
+		/// Solution Constraints
 		/// 1. You must not modify the array (assume the array is read only).
 		/// 2. You must use only constant, O(1) extra space.
 		/// 3. Your runtime complexity should be less than O(n*n).
