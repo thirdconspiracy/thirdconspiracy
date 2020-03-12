@@ -6,6 +6,8 @@ namespace thirdconspiracy.Utilities.Extensions
 {
     public static class TypeExtensions
     {
+        #region PO Box
+
         //TODO: Move to const class
         private static readonly string POBOX_REGEX_PATTERN =
             @"^\s*((#\d+)|((box|bin)[-\.\s\/\\]*\d+)|(.*p[-\.\s\/\\]*\s*(o|0)[-\.\s\/\\]*((box|bin)|b|(#|num|number)*\d+))|(p(ost)?\s*(o(ff(ice)?)?)?\s*((box|bin)|b)?(([-\.\s\/\\]+)|$)\d*)|(p\s*-?\/?(o)?\*-?box)|((box|bin)|b)\s*(number|num|#)?\s*\d+|(num|number|#)\s*\d+)";
@@ -15,6 +17,10 @@ namespace thirdconspiracy.Utilities.Extensions
             var re = new Regex(POBOX_REGEX_PATTERN, RegexOptions.IgnoreCase);
             return re.IsMatch(addressLine);
         }
+
+        #endregion PO Box
+
+        #region Number
 
         public static bool IsNumericType(this object o)
         {
@@ -41,6 +47,10 @@ namespace thirdconspiracy.Utilities.Extensions
                     return false;
             }
         }
+
+        #endregion Number
+
+        #region IMEI
 
         public static bool IsImeiType(this string imei)
         {
@@ -95,6 +105,9 @@ namespace thirdconspiracy.Utilities.Extensions
 	        return total - 9;
         }
 
+        #endregion IMEI
+
+        #region UPC/GTIN/EAN
 
         public static bool IsGtinType(this string gtin)
         {
@@ -132,6 +145,10 @@ namespace thirdconspiracy.Utilities.Extensions
             }
 
         }
+
+        #endregion UPC/GTIN/EAN
+
+        #region ISSN
 
         public static bool IsIssnType(this string s)
         {
@@ -172,6 +189,10 @@ namespace thirdconspiracy.Utilities.Extensions
                 return false;
             }
         }
+
+        #endregion ISSN
+
+        #region ISBN
 
         public static bool IsIsbnType(this string s)
         {
@@ -256,6 +277,8 @@ namespace thirdconspiracy.Utilities.Extensions
             }
             return string.Equals(checkDigit.ToString(), isbn.Substring(isbn.Length - 1, 1), StringComparison.OrdinalIgnoreCase);
         }
+
+        #endregion ISBN
 
     }
 }
