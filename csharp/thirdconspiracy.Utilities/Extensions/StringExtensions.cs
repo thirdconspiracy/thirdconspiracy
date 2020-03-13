@@ -5,6 +5,7 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Text.RegularExpressions;
+using thirdconspiracy.Utilities.Utilities;
 
 namespace thirdconspiracy.Utilities.Extensions
 {
@@ -32,46 +33,31 @@ namespace thirdconspiracy.Utilities.Extensions
                 return string.Empty;
             }
             var fromSnakeCase = text.Replace("_", " ");
+            // When lower to upper found, add space between
             var lowerToUpper = Regex.Replace(fromSnakeCase, @"(\p{Ll})(\p{Lu})", "$1 $2");
+            // When 2+ upper case found, add space before last upper
             var sentenceCase = Regex.Replace(lowerToUpper, @"(\p{Lu}+)(\p{Lu}\p{Ll})", "$1 $2");
+            // Set start of each work to upper
             return new CultureInfo("en-US", false).TextInfo.ToTitleCase(sentenceCase);
         }
 
-        public static bool TryParseBool(string value, out bool parsedValue)
+        public static bool TryParseBool(this string value, out bool parsedValue)
         {
-            if (value == "1" || String.Equals(value, "true", StringComparison.OrdinalIgnoreCase) || String.Equals(value, "yes", StringComparison.OrdinalIgnoreCase))
-            {
-                parsedValue = true;
-                return true;
-            }
-
-            if (value == "0" || String.Equals(value, "false", StringComparison.OrdinalIgnoreCase) || String.Equals(value, "no", StringComparison.OrdinalIgnoreCase))
-            {
-                parsedValue = false;
-                return true;
-            }
-
-            // couldn't parse
-            parsedValue = false;
-            return false;
+	        return BooleanUtilities.TryFuzzyParse(value, out parsedValue);
         }
 
-        public static string Right(this string text, int maxLength)
+        public static string TakeRight(this string text, int maxLength)
         {
-            //Check if the value is valid
-            if (string.IsNullOrEmpty(text))
-            {
-                //Set valid empty string as string could be null
-                text = string.Empty;
-            }
-            else if (text.Length > maxLength)
-            {
-                //Make the string no longer than the max length
-                text = text.Substring(text.Length - maxLength, maxLength);
-            }
+	        if (text == null)
+	        {
+		        return string.Empty;
+	        }
 
-            //Return the string
-            return text;
+	        var actualLength = Math.Min(text.Length, maxLength);
+	        var startIndex = text.Length - actualLength;
+
+	        text = text.Substring(startIndex, actualLength);
+	        return text;
         }
 
         public static string Truncate(this string s, int maxLength)
