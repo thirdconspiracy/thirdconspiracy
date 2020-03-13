@@ -18,6 +18,15 @@ namespace thirdconspiracy.Utilities.UnitTests
 			Assert.AreEqual(expected, actual);
 		}
 
+		[TestCase("8965880812100011146", true)]
+		[TestCase("8965880812100011147", false)]
+		[TestCase("fake880812100011146", false)]
+		public void IccidTypeTests(string iccid, bool expected)
+		{
+			var actual = iccid.IsIccidType();
+			Assert.AreEqual(expected, actual);
+		}
+
 		[Category("UnitTests"), Category("Extensions")]
 		[TestCase("9780439064866", true)]
 		[TestCase("9780439064867", false)]
@@ -27,6 +36,7 @@ namespace thirdconspiracy.Utilities.UnitTests
 			var actual = gtin.IsGtinType();
 			Assert.AreEqual(expected, actual);
 		}
+
 
 		//TODO: ISSN & ISBN
 

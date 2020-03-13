@@ -72,19 +72,19 @@ namespace thirdconspiracy.Utilities.Extensions
 
 		        var sum =
 			        digits[0] +
-			        ImeiDoubled(digits[1]) +
+			        DoubleAndAddValueDigits(digits[1]) +
 			        digits[2] +
-			        ImeiDoubled(digits[3]) +
+			        DoubleAndAddValueDigits(digits[3]) +
 			        digits[4] +
-			        ImeiDoubled(digits[5]) +
+			        DoubleAndAddValueDigits(digits[5]) +
 			        digits[6] +
-			        ImeiDoubled(digits[7]) +
+			        DoubleAndAddValueDigits(digits[7]) +
 			        digits[8] +
-			        ImeiDoubled(digits[9]) +
+			        DoubleAndAddValueDigits(digits[9]) +
 			        digits[10] +
-			        ImeiDoubled(digits[11]) +
+			        DoubleAndAddValueDigits(digits[11]) +
 			        digits[12] +
-			        ImeiDoubled(digits[13]);
+			        DoubleAndAddValueDigits(digits[13]);
 
 		        var checkDigit = 10 - (sum % 10);
 		        return digits[14] == checkDigit;
@@ -95,7 +95,7 @@ namespace thirdconspiracy.Utilities.Extensions
 	        }
         }
 
-        private static int ImeiDoubled(int digit)
+        private static int DoubleAndAddValueDigits(int digit)
         {
 	        var total = digit * 2;
 	        if (total < 10)
@@ -106,6 +106,57 @@ namespace thirdconspiracy.Utilities.Extensions
         }
 
         #endregion IMEI
+
+        #region ICCID
+
+        public static bool IsIccidType(this string iccid)
+        {
+	        try
+	        {
+		        if (string.IsNullOrWhiteSpace(iccid) || iccid.Length > 19)
+		        {
+			        return false;
+		        }
+
+		        if (iccid.Length < 19)
+		        {
+			        iccid = iccid.PadLeft(19, '0');
+		        }
+
+		        var digits = iccid.ToCharArray()
+			        .Select(c => int.Parse(c.ToString()))
+			        .ToArray();
+
+		        var sum =
+				        digits[0] +
+				        DoubleAndAddValueDigits(digits[1]) +
+				        digits[2] +
+				        DoubleAndAddValueDigits(digits[3]) +
+				        digits[4] +
+				        DoubleAndAddValueDigits(digits[5]) +
+				        digits[6] +
+				        DoubleAndAddValueDigits(digits[7]) +
+				        digits[8] +
+				        DoubleAndAddValueDigits(digits[9]) +
+				        digits[10] +
+				        DoubleAndAddValueDigits(digits[11]) +
+				        digits[12] +
+				        DoubleAndAddValueDigits(digits[13]) +
+				        digits[14] +
+				        DoubleAndAddValueDigits(digits[15]) +
+				        digits[16] +
+				        DoubleAndAddValueDigits(digits[17]);
+
+		        var checkDigit = (sum * 9) % 10;
+		        return digits[18] == checkDigit;
+	        }
+	        catch (Exception)
+	        {
+		        return false;
+	        }
+        }
+
+        #endregion ICCID
 
         #region UPC/GTIN/EAN
 
