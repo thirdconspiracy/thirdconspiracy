@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -27,7 +28,7 @@ namespace thirdconspiracy.Utilities.Utilities
         public static IEnumerable<T> Parse<T>(IEnumerable<string> lines)
         {
             using (var ieStream = new IEnumerableStringReader(lines))
-            using (var csvReader = new CsvReader(ieStream))
+            using (var csvReader = new CsvReader(ieStream, CultureInfo.InvariantCulture))
             {
                 return csvReader.GetRecords<T>();
             }
@@ -45,7 +46,7 @@ namespace thirdconspiracy.Utilities.Utilities
 
         public static IEnumerable<T> Parse<T>(Stream csvStream)
         {
-            var config = new Configuration { Delimiter = ",", TrimOptions = TrimOptions.Trim };
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture) { Delimiter = ",", TrimOptions = TrimOptions.Trim };
             using (var sr = new StreamReader(csvStream))
             using (var csvReader = new CsvReader(sr, config))
             {

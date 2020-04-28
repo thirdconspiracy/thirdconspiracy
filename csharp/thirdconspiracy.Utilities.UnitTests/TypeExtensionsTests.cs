@@ -12,6 +12,7 @@ namespace thirdconspiracy.Utilities.UnitTests
 		[TestCase("357805023984942", true)]
 		[TestCase("357805023984943", false)]
 		[TestCase("fake05023984942", false)]
+		[TestCase("000000000000000", false)]
 		public void ImeiTypeTests(string imei, bool expected)
 		{
 			var actual = imei.IsImeiType();

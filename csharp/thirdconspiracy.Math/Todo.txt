@@ -1,0 +1,13 @@
+﻿Cycle Detection
+* Brent
+
+Sort - determine complexity
+* https://remembertheapi.com/collections/mugs/products/computational-complexity-cheat-sheet-white-ceramic-mug :)
+* Bubble
+* Quick
+* Merge
+
+Tree insertion and rebalance - determine complexity
+* Red/Black - https://www.youtube.com/watch?v=A3JZinzkMpk
+* B-Tree
+* AVL

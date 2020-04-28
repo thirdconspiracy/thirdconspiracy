@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using System.Globalization;
 using System.IO;
 using System.IO.Compression;
 using System.Linq;
@@ -42,7 +43,7 @@ namespace thirdconspiracy.Utilities.Utilities
 
         public static IEnumerable<string[]> Parse(StreamReader csvStream)
         {
-            var config = new Configuration { Delimiter = "\t", TrimOptions = TrimOptions.Trim };
+            var config = new CsvConfiguration(CultureInfo.InvariantCulture) { Delimiter = "\t", TrimOptions = TrimOptions.Trim };
             using (var parser = new CsvParser(csvStream, config))
             {
                 string[] line;
