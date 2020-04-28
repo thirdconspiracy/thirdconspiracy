@@ -86,8 +86,8 @@ namespace thirdconspiracy.Utilities.Extensions
 			        digits[12] +
 			        DoubleAndAddValueDigits(digits[13]);
 
-		        var checkDigit = 10 - (sum % 10);
-		        return digits[14] == checkDigit;
+		        var checksum = (sum * 9) % 10;
+		        return digits[14] == checksum;
 	        }
 	        catch (Exception)
 	        {
