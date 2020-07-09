@@ -37,22 +37,27 @@
 	token = "!echo '\"Authorization: Bearer '$(git config --get bitbucket.token)'\"'"
 	data = !sh -c 'echo -e \"\\x27{\\\"title\\\":\\\"$1 - $2\\\",\\\"closed\\\":\\\"true\\\",\\\"fromRef\\\":{\\\"id\\\":\\\"refs/heads/$1\\\"},\\\"toRef\\\":{\\\"id\\\":\\\"refs/heads/$2\\\"""}}\\x27\"' -
 [alias]
-	dev = "!f() { git fetch; git checkout -b fn/feature/$1 --track origin/master; git push -u origin HEAD:fn/feature/$1; git info; }; f"
-	go = "!git push; git pr.m; git pr.s; git pr.d; git info;"
+	dev = "!f() { git fetch; git checkout -b feature/$1 --track origin/master; git info; }; f"
+	go = "!git fetch && git rebase origin/master && git mkbr; git info; git echo 'Note: Verify Build https://devops.url'"
 	sync = "!git info; git pull && git push; git info"
 	rmbr = "push origin --delete"
-	review = "!sha=$1; git status; b() { total=$(git diff | wc -l); if [ $total -eq \"0\" ]; then git difftool --dir-diff --cached; else git difftool --dir-diff; fi; }; s() { git difftool --dir-diff $sha^ $sha; }; r() { if [ -z \"$1\" ]; then b; else s; fi; }; r"
+	review = "!sha=$1; git info; b() { total=$(git diff | wc -l); if [ $total -eq \"0\" ]; then git difftool --dir-diff --cached; else git difftool --dir-diff; fi; }; s() { git difftool --dir-diff $sha^ $sha; }; r() { if [ -z \"$1\" ]; then b; else s; fi; }; r"
+    cached = difftool --dir-diff --cached
 	branch-name = !git rev-parse --abbrev-ref HEAD
 	cp = cherry-pick
 	co = "!f() { git checkout fn/feature/$1; }; f"
 	history = "!f() { git reflog -60 | grep $1; }; f"
 	contains = "!f() { git fetch | git branch -a --contains $1; }; f"
-	info = "!sha=$1; i() { git echo 'Branches' && git branch && echo && git echo 'Revisions' && git lol -2 && echo && git echo 'Edits' && git status; }; f() { git show --name-only $sha; }; r() { if [ -z \"$1\" ]; then i; else f; fi; }; r"
+	info = "!sha=$1; i() { git echo 'Branches' && git branch && echo && git echo 'Revisions' && git lol -8 && echo && git echo 'Edits' && git status; }; f() { git show --name-only $sha; }; r() { if [ -z \"$1\" ]; then i; else f; fi; }; r"
 	lol = log --oneline --graph --decorate --pretty=format:\"%ad %C(yellow)%h %C(green)%cn: %C(red)%d %Creset%s\" --date=short
 	jira = "!f() { git log --oneline --reverse --pretty=\"%ad %C(yellow)%h %C(red)%an %C(reset)%s\" --decorate --perl-regexp -i --date=short --grep=$1 --author=\"^((?!(unknown|BuildSvcUser|buildsvcuser)).*)$\"; }; f"
-	nuke = "!git clean -df;git reset;git checkout -- .;git prune;git gc;git status"
+	nuke = "!git clean -df;git reset;git checkout -- .;git gc;git submodule update --init;git info"
 	echo = "!tput setaf 1 && echo $1 && tput sgr0"
 	alias = "!f() { git config --list | grep ^alias.$1; }; f"
 	me = "!git lol --author=brantley.blanchard"
 	hide = update-index --assume-unchanged
 	unhide = update-index --no-assume-unchanged
+	sub = submodule update --init
+	mkbr = push -u origin HEAD
+    rmbr = "!br=$1; i() { git push origin --delete $1; }; j() { git push origin --delete $(git branch-name); }; f() { if [ -z \"$1\" ]; then j; else i; fi; }; f; git fetch; git info;"
+    swap = "!git rmbr && git fetch && git rebase origin/master && git mkbr"
