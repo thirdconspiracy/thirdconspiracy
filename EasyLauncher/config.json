@@ -1,0 +1,415 @@
+[
+    {
+        "Name": "System",
+        "Process": null,
+        "Entries": [
+            {
+                "Name": "Command Prompt",
+                "Process": "cmd.exe",
+                "Arguments": null
+            },
+            {
+                "Name": "Powershell",
+                "Process": "Powershell.exe",
+                "Arguments": null
+            },
+            {
+                "Name": "IIS Manager",
+                "Process": "InetMgr.exe",
+                "Arguments": null
+            },
+            {
+                "Name": "Services",
+                "Process": "Services.msc",
+                "Arguments": null
+            },
+            {
+                "Name": "Hosts File",
+                "Process": "C:\\Program Files\\Notepad++\\notepad++.exe",
+                "Arguments": "C:\\Windows\\System32\\drivers\\etc\\hosts"
+            }
+        ]
+    },
+    {
+        "Name": "Apps",
+        "Process": null,
+        "Entries": [
+            {
+                "Name": "Update Config",
+                "Process": "C:\\Program Files\\Notepad++\\notepad++.exe",
+                "Arguments": "config.json"
+            },
+            {
+                "Name": "Notepad++",
+                "Process": "C:\\Program Files\\Notepad++\\notepad++.exe",
+                "Arguments": null
+            },
+            {
+                "Name": "VS Installer",
+                "Process": "C:\\Program Files (x86)\\Microsoft Visual Studio\\Installer\\vs_installer.exe",
+                "Arguments": null
+            }
+        ]
+    },
+    {
+        "Name": "VS Solutions",
+        "Process": "C:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\Common7\\IDE\\devenv.exe",
+        "Entries": [
+            {
+                "Name": "Visual Studio",
+                "Process": null,
+                "Arguments": null
+            },
+            {
+                "Name": "AccountWebAPI.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-account-api\\AccountWebAPI.sln"
+            },
+            {
+                "Name": "AccountWebAPI.Test.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-account-api\\AccountWebAPI.Test\\AccountWebAPI.Test.sln"
+            },
+            {
+                "Name": "inReachActivationPortal.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-activation-portal\\inReachActivationPortal.sln"
+            },
+            {
+                "Name": "AddressApi.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-address-api\\AddressApi\\AddressApi.sln"
+            },
+            {
+                "Name": "Alohomora.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-alohomora\\Alohomora\\Alohomora.sln"
+            },
+            {
+                "Name": "AmIAliveService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-amialive-bubble\\AmIAliveService.sln"
+            },
+            {
+                "Name": "ApiGateway.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-app-tier-api-gateway\\ApiGateway.sln"
+            },
+            {
+                "Name": "AppEventService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-appevent-service\\AppEventService\\AppEventService.sln"
+            },
+            {
+                "Name": "AppWebReceiver.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-appweb-receiver\\AppWebReceiver\\AppWebReceiver.sln"
+            },
+            {
+                "Name": "AviationApi.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-aviation-api\\AviationApi.sln"
+            },
+            {
+                "Name": "AzureDBWatcher.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-azure-db-watcher\\AzureDBWatcher.sln"
+            },
+            {
+                "Name": "Bebop.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-bebop\\Bebop\\Bebop.sln"
+            },
+            {
+                "Name": "Brain.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-brain\\Brain\\Brain.sln"
+            },
+            {
+                "Name": "CDRBubble.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-cdr-bubble\\CDR\\CDRBubble.sln"
+            },
+            {
+                "Name": "CrossSystemTests.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-cross-system-tests\\CrossSystemTests.sln"
+            },
+            {
+                "Name": "DADService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-dad-bubble\\DADService.sln"
+            },
+            {
+                "Name": "DataPackageManager.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-datapackage-mgr\\DataPackageManager\\DataPackageManager.sln"
+            },
+            {
+                "Name": "DLMSProvisioningService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-dlms-service\\DLMSProvisioningService.sln"
+            },
+            {
+                "Name": "DLMSProvisioningService.Test.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-dlms-service\\DLMSProvisioningService.Test\\DLMSProvisioningService.Test.sln"
+            },
+            {
+                "Name": "Dory.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-dory\\Dory.sln"
+            },
+            {
+                "Name": "AppDrsService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-drs-service\\AppDrsService\\AppDrsService.sln"
+            },
+            {
+                "Name": "EIPAccountFixer.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-eip-monitor\\EIP\\EIPAccountFixer.sln"
+            },
+            {
+                "Name": "SOX-EIP.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-eip-monitor\\EIP\\SOX-EIP.sln"
+            },
+            {
+                "Name": "billingcompare.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-eip-monitor\\EIP\\billingcompare\\billingcompare.sln"
+            },
+            {
+                "Name": "EmailBubble.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-email-bubble\\EmailBubble\\EmailBubble.sln"
+            },
+            {
+                "Name": "EmulatorHubService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-emulator-hub\\EmulatorHubService\\EmulatorHubService.sln"
+            },
+            {
+                "Name": "Explore.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-explore\\Explore\\Explore.sln"
+            },
+            {
+                "Name": "ExploreRedux.Test.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-explore\\ExploreRedux.Test\\ExploreRedux.Test.sln"
+            },
+            {
+                "Name": "IBAMJobProcessor.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-ibam-jobprocessor\\IBAMJobProcessor\\IBAMJobProcessor.sln"
+            },
+            {
+                "Name": "RabbitService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-ibam-rabbitsvc\\RabbitService\\RabbitService.sln"
+            },
+            {
+                "Name": "InReachIdentity.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-identity\\InReachIdentity.sln"
+            },
+            {
+                "Name": "InternalServices.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-internal-api\\AppInternalServices\\InternalServices.sln"
+            },
+            {
+                "Name": "AppInternalServices.Test.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-internal-api\\AppInternalServices.Test\\AppInternalServices.Test.sln"
+            },
+            {
+                "Name": "MapDataRevs.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-map-revs\\MapDataRevs\\MapDataRevs.sln"
+            },
+            {
+                "Name": "MessageDispatchService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-message-dispatch\\MessageDispatchService\\MessageDispatchService.sln"
+            },
+            {
+                "Name": "MetaSenderService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-metasender\\MetaSender\\MetaSenderService.sln"
+            },
+            {
+                "Name": "MobileRegionSelection.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-mobilemaps-api\\MobileRegionSelection\\MobileRegionSelection.sln"
+            },
+            {
+                "Name": "MonitoringAgent.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-monitoring-agent\\MonitoringAgent\\MonitoringAgent.sln"
+            },
+            {
+                "Name": "IridiumMsgTester.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-msg-tester\\IridiumMsgTester\\IridiumMsgTester.sln"
+            },
+            {
+                "Name": "OwnerCreationRevs.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-owner-revs\\OwnerCreationRevs.sln"
+            },
+            {
+                "Name": "PassportService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-passport-service\\PassportService.sln"
+            },
+            {
+                "Name": "RegionService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-region-service\\RegionService.sln"
+            },
+            {
+                "Name": "RegionService.Test.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-region-service\\RegionService.Test\\RegionService.Test.sln"
+            },
+            {
+                "Name": "RingAlertWorker.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-ringalert\\RingAlertBubble\\RingAlertWorker.sln"
+            },
+            {
+                "Name": "Rocksteady.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-rocksteady\\Rocksteady\\Rocksteady.sln"
+            },
+            {
+                "Name": "MapEnhance.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-sisyphus\\MapEnhance.sln"
+            },
+            {
+                "Name": "SMSa2p.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-sms-a2p\\SMSa2p\\SMSa2p.sln"
+            },
+            {
+                "Name": "SMSBubble.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-sms-bubble\\SMSBubble\\SMSBubble.sln"
+            },
+            {
+                "Name": "SOSHub.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-sos-hub\\SOSHub.sln"
+            },
+            {
+                "Name": "GeosUserRegistrationService.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-sos-registration\\GeosUserRegistrationService\\GeosUserRegistrationService.sln"
+            },
+            {
+                "Name": "SOX-EIP.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-sox-eip\\EIP\\SOX-EIP.sln"
+            },
+            {
+                "Name": "EIPPaymentProxy.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-sox-eippaymentproxy\\EIPPaymentProxy.sln"
+            },
+            {
+                "Name": "SubscriberApi.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-subscriber-api\\SubscriberApi.sln"
+            },
+            {
+                "Name": "SubscriberAPI.Test.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-subscriber-api\\SubscriberApi.Test\\SubscriberAPI.Test.sln"
+            },
+            {
+                "Name": "Sync2.0.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-sync-2.0\\Sync2.0\\Sync2.0.sln"
+            },
+            {
+                "Name": "CIGlue.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-tools-ciglue\\CIGlue.sln"
+            },
+            {
+                "Name": "Atlassian.Stash.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-tools-ciglue\\ThirdPartyTools\\StashApiCSharp\\Atlassian.Stash.sln"
+            },
+            {
+                "Name": "AdHocEmailer.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-tools-emailer\\AdHocEmailer\\AdHocEmailer.sln"
+            },
+            {
+                "Name": "TranslationSupportTool.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-trans-support\\TranslationSupportTool.sln"
+            },
+            {
+                "Name": "WebCacheViewer.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-web-cache\\WebCacheViewer\\WebCacheViewer.sln"
+            },
+            {
+                "Name": "AddressWedge.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-wedge-address\\AddressWedge\\AddressWedge.sln"
+            },
+            {
+                "Name": "EmailWedge.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-wedge-email\\EmailWedge\\EmailWedge.sln"
+            },
+            {
+                "Name": "IPCWedge.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-wedge-ipc\\IPCWedge\\IPCWedge.sln"
+            },
+            {
+                "Name": "SBDWedge.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-wedge-sbd\\SBDWedge\\SBDWedge.sln"
+            },
+            {
+                "Name": "WebSenderWedge.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-wedge-sender\\WebSender\\WebSenderWedge.sln"
+            },
+            {
+                "Name": "SMSWedge.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-wedge-sms\\SMSWedge\\SMSWedge.sln"
+            },
+            {
+                "Name": "SocialWedge.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-wedge-social\\SocialWedge\\SocialWedge.sln"
+            },
+            {
+                "Name": "SOSWedge.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-wedge-sos\\SOSWedge\\SOSWedge.sln"
+            },
+            {
+                "Name": "WeatherForecast.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-wedge-weather\\WeatherForecast\\WeatherForecast.sln"
+            },
+            {
+                "Name": "WeatherWedge.sln",
+                "Process": null,
+                "Arguments": "c:\\work\\irs-wedge-weather\\WeatherWedge\\WeatherWedge.sln"
+            }
+        ]
+    }
+]
