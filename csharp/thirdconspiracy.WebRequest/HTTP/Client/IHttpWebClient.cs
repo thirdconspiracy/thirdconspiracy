@@ -1,9 +1,10 @@
-﻿using thirdconspiracy.WebRequest.HTTP.Models;
+﻿using System.Threading.Tasks;
+using thirdconspiracy.WebRequest.HTTP.Models;
 
 namespace thirdconspiracy.WebRequest.HTTP.Client
 {
     public interface IHttpWebClient
     {
-        IHttpResponseModel Execute(IHttpRequestModel httpRequest);
+        Task<IHttpResponseModel> Execute(IHttpRequestModel httpRequest);
     }
 }

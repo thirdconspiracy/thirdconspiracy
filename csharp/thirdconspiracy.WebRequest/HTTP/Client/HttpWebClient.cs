@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Net.Http;
 using System.Threading;
+using System.Threading.Tasks;
 using thirdconspiracy.WebRequest.HTTP.Models;
 using thirdconspiracy.WebRequest.HTTP.Utilities;
 using thirdconspiracy.WebRequest.HttpLogger.EventManager;
@@ -41,7 +42,7 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
 
         #endregion CTOR
 
-        public IHttpResponseModel Execute(IHttpRequestModel httpRequest)
+        public async Task<IHttpResponseModel> Execute(IHttpRequestModel httpRequest)
         {
             if (!(httpRequest is HttpRequestModel request))
             {
@@ -55,7 +56,7 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
             {
                 ValidateRequest(request);
 
-                response = Send(request);
+                response = await Send(request);
 
                 return response;
             }
@@ -97,7 +98,7 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
             }
         }
 
-        private HttpResponseModel Send(HttpRequestModel request)
+        private async Task<HttpResponseModel> Send(HttpRequestModel request)
         {
             using (var reqMsg = HttpRequestMessageBuilder.BuildHttpRequestMessage(request))
             {
@@ -105,18 +106,17 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
                 var transactionId = GetNextTransactionId();
 
                 var sentAtUtc = DateTimeOffset.UtcNow;
-                var respMsg = SendNow(reqMsg, cancellationToken);
-                var completedAt = DateTimeOffset.UtcNow;
+                var respMsg = await SendNow(reqMsg, cancellationToken);
 
                 var resp = HttpResponseBuilder
                     .BuildHttpResponseModel(
                         transactionId,
                         sentAtUtc,
-                        completedAt,
+                        DateTimeOffset.UtcNow, 
                         request.ShouldBufferResponseBody,
                         respMsg);
 
-                return resp;
+                return await resp;
             }
         }
 
@@ -130,7 +130,12 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
             return new CancellationTokenSource(timeout.Value).Token;
         }
 
-        private HttpResponseMessage SendNow(HttpRequestMessage requestMessage, CancellationToken cancellationToken)
+        private int GetNextTransactionId()
+        {
+	        return Interlocked.Increment(ref _currentTransactionId);
+        }
+
+        private async Task<HttpResponseMessage> SendNow(HttpRequestMessage requestMessage, CancellationToken cancellationToken)
         {
             try
             {
@@ -140,19 +145,12 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
                         HttpCompletionOption.ResponseHeadersRead,
                         cancellationToken);
 
-                task.Wait(cancellationToken);
-
-                return task.Result;
+                return await task;
             }
             catch (OperationCanceledException e)
             {
                 throw new TimeoutException("Timeout expired via cancellation token", e);
             }
-        }
-
-        private int GetNextTransactionId()
-        {
-            return Interlocked.Increment(ref _currentTransactionId);
         }
 
     }

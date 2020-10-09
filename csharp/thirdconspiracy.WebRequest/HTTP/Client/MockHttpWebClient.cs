@@ -1,6 +1,7 @@
 ﻿using Moq;
 using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using thirdconspiracy.WebRequest.HTTP.Models;
 using thirdconspiracy.WebRequest.HttpLogger.EventManager;
 
@@ -18,7 +19,7 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
 
         #endregion Member Variables
 
-        public IHttpResponseModel Execute(IHttpRequestModel httpRequest)
+        public async Task<IHttpResponseModel> Execute(IHttpRequestModel httpRequest)
         {
             if (!(httpRequest is HttpRequestModel request))
             {

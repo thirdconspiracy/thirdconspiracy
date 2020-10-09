@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
+using System.Threading.Tasks;
 using thirdconspiracy.WebRequest.HTTP.Models;
 
 namespace thirdconspiracy.WebRequest.HTTP.Utilities
 {
     public static class HttpResponseBuilder
     {
-        public static HttpResponseModel BuildHttpResponseModel(int transactionId, DateTimeOffset sentAtUtc, DateTimeOffset completedAtUtc, bool saveInMemory, HttpResponseMessage respMsg)
+        public static async Task<HttpResponseModel> BuildHttpResponseModel(int transactionId, DateTimeOffset sentAtUtc, DateTimeOffset completedAtUtc, bool saveInMemory, HttpResponseMessage respMsg)
         {
             var response = new HttpResponseModel
             {
@@ -24,7 +25,7 @@ namespace thirdconspiracy.WebRequest.HTTP.Utilities
             if (saveInMemory)
             {
                 response.IsBodyInMemory = true;
-                response.ResponseBytes = respMsg.Content.ReadAsByteArrayAsync().Result;
+                response.ResponseBytes = await respMsg.Content.ReadAsByteArrayAsync();
                 respMsg.Dispose();
             }
             else
