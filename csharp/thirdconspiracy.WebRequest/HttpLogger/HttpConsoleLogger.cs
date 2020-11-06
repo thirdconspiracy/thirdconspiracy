@@ -45,7 +45,7 @@ namespace thirdconspiracy.WebRequest.HttpLogger
 
         #region Write
 
-        private void HandleRequestCompletedEvent(object sender, HttpCommunicationEvent evtArgs)
+        private void HandleRequestCompletedEvent(object sender, HttpCommunicationEventArgs evtArgs)
         {
             var sb = new StringBuilder();
             sb.AppendLine("\n");

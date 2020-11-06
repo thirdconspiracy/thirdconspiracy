@@ -4,11 +4,16 @@ namespace thirdconspiracy.WebRequest.HttpLogger.EventManager
 {
     public static class CommunicationLoggerEventManager
     {
-        public static event EventHandler<HttpCommunicationEvent> CommunicationListener;
+        public static event EventHandler<HttpCommunicationEventArgs> CommunicationListener;
 
-        public static void NotifyHttpRequestCompleted(object sender, HttpCommunicationEvent httpEvent)
+        public static void NotifyHttpRequestCompleted(object sender, HttpCommunicationEventArgs httpEventArgs)
         {
-            CommunicationListener?.Invoke(sender, httpEvent);
+	        var eventHandler = CommunicationListener;
+	        var receivers = eventHandler?.GetInvocationList();
+	        if (receivers == null)
+		        return;
+            foreach (EventHandler<HttpCommunicationEventArgs> receiver in receivers)
+	            receiver.BeginInvoke(sender, httpEventArgs, null, null);
         }
     }
 }

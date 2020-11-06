@@ -41,7 +41,7 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
             finally
             {
                 CommunicationLoggerEventManager.NotifyHttpRequestCompleted(
-                    this, new HttpCommunicationEvent(request, response, caughtException));
+                    this, new HttpCommunicationEventArgs(request, response, caughtException));
             }
         }
 

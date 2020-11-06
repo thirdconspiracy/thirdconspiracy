@@ -44,7 +44,7 @@ namespace thirdconspiracy.WebRequest.HttpLogger
 
         #region Write
 
-        private void HandleRequestCompletedEvent(object sender, HttpCommunicationEvent evtArgs)
+        private void HandleRequestCompletedEvent(object sender, HttpCommunicationEventArgs evtArgs)
         {
             var document = BuildKinesisDocument(evtArgs);
             if (_cfg.IsEnabled)
@@ -56,7 +56,7 @@ namespace thirdconspiracy.WebRequest.HttpLogger
             }
         }
 
-        private HttpKinesisDocument BuildKinesisDocument(HttpCommunicationEvent evtArgs)
+        private HttpKinesisDocument BuildKinesisDocument(HttpCommunicationEventArgs evtArgs)
         {
             var doc = new HttpKinesisDocument
             {
