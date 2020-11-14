@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Threading.Tasks;
 using Moq;
 using NUnit.Framework;
 using thirdconspiracy.WebRequest.HTTP.Client;
@@ -10,7 +11,7 @@ namespace thirdconspiracy.WebRequest.IntegrationTests
     public class MockHttpRequestQueuedTests
     {
         [Test]
-        public void VerifyQueuedResponse()
+        public async Task VerifyQueuedResponse()
         {
             var mockResponse1 = new Mock<IHttpResponseModel>();
             mockResponse1
@@ -30,11 +31,11 @@ namespace thirdconspiracy.WebRequest.IntegrationTests
                 .CreateSimpleRequest(HttpAction.GET, new Uri("https://www.example.com/v1/object1"));
 
             // Expect Response1
-            var response = mockWebClient.Execute(request);
+            var response = await mockWebClient.Execute(request);
             Assert.AreEqual(mockResponse1.Object.TransactionId, response.TransactionId);
 
             // Expect Response2
-            response = mockWebClient.Execute(request);
+            response = await mockWebClient.Execute(request);
             Assert.AreEqual(mockResponse2.Object.TransactionId, response.TransactionId);
         }
     }
