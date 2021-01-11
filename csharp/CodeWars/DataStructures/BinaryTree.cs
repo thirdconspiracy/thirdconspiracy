@@ -1,11 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
-using System.Linq;
 
-namespace CodeWars
+namespace CodeWars.DataStructures
 {
-    public class NodeWars
+    public class BinaryTree
     {
         public class Node<T>
         {
@@ -52,7 +50,7 @@ namespace CodeWars
             return Math.Max(centerDistance, Math.Max(leftDistance, rightDistance));
         }
 
-        public List<int> PrintLevels(Node<int> root)
+        public List<int> TraverseLevels(Node<int> root)
         {
             if (root == null)
                 return new List<int>();
@@ -74,6 +72,62 @@ namespace CodeWars
             }
 
             return result;
+        }
+
+        /// <summary>
+        /// All values in sorted order
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="values"></param>
+        public void TraverseInOrder(Node<int> root, List<int> values)
+        {
+	        if (root == null)
+		        return;
+            TraverseInOrder(root.Left, values);
+            values.Add(root.Data);
+            TraverseInOrder(root.Right, values);
+        }
+
+        /// <summary>
+        /// All values in reverse sorted order
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="values"></param>
+        public void TraverseReverseOrder(Node<int> root, List<int> values)
+        {
+	        if (root == null)
+		        return;
+	        TraverseReverseOrder(root.Right, values);
+	        values.Add(root.Data);
+	        TraverseReverseOrder(root.Left, values);
+        }
+
+        /// <summary>
+        /// Reverse of order values were added
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="values"></param>
+        public void TraversePostOrder(Node<int> root, List<int> values)
+        {
+	        if (root == null)
+		        return;
+	        TraversePostOrder(root.Right, values);
+	        TraversePostOrder(root.Left, values);
+	        values.Add(root.Data);
+        }
+
+        /// <summary>
+        /// Order values were added
+        /// </summary>
+        /// <param name="root"></param>
+        /// <param name="values"></param>
+        public void TraversePreOrder(Node<int> root, List<int> values)
+        {
+	        if (root == null)
+		        return;
+	        values.Add(root.Data);
+            TraversePreOrder(root.Right, values);
+	        TraversePreOrder(root.Left, values);
         }
 
     }

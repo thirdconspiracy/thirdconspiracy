@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using thirdconspiracy.Utilities.Extensions;
 
 namespace thirdconspiracy.Math
 {
@@ -13,11 +14,7 @@ namespace thirdconspiracy.Math
             var runningMedian = new string[numbers.Length];
             for (int i = 0; i < numbers.Length; i++)
             {
-                var index = sortedList.BinarySearch(numbers[i]);
-                if (index < 0)
-                    sortedList.Insert(~index, numbers[i]);
-                else
-                    sortedList.Insert(index, numbers[i]);
+	            sortedList.SortedInsert(numbers[i]);
 
                 var instanceCount = i + 1;
                 if (instanceCount == 1)

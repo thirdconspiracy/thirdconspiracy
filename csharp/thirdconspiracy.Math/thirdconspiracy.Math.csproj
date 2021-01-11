@@ -10,4 +10,8 @@
     <Folder Include="Sort\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\thirdconspiracy.Utilities\thirdconspiracy.Utilities.csproj" />
+  </ItemGroup>
+
 </Project>

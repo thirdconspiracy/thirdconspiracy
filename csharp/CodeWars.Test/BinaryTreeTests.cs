@@ -1,14 +1,15 @@
-﻿using NUnit.Framework;
+﻿using CodeWars.DataStructures;
+using NUnit.Framework;
 
 namespace CodeWars.Test
 {
-    public class NodeWarsTests
+    public class BinaryTreeTests
     {
         //Number of nodes below root
         [Test]
         public void HeigthTest()
         {
-            var nodeWars = new NodeWars();
+            var nodeWars = new BinaryTree();
             var root = SeedNode(nodeWars);
 
             var height = nodeWars.Height(root);
@@ -19,7 +20,7 @@ namespace CodeWars.Test
         [Test]
         public void DistanceTest()
         {
-            var nodeWars = new NodeWars();
+            var nodeWars = new BinaryTree();
             var root = SeedNode(nodeWars);
 
             var distance = nodeWars.Distance(root);
@@ -30,20 +31,20 @@ namespace CodeWars.Test
         public void TestLevels()
         {
             var expectedLevels = "3,1,5,2,4,8,6,9,7";
-            var nodeWars = new NodeWars();
+            var nodeWars = new BinaryTree();
             var root = SeedNode(nodeWars);
 
-            var levels = nodeWars.PrintLevels(root);
+            var levels = nodeWars.TraverseLevels(root);
             var actualLevels = string.Join(",", levels);
             Assert.AreEqual(expectedLevels, actualLevels);
         }
 
-        private static NodeWars.Node<int> SeedNode(NodeWars nodeWars)
+        private static BinaryTree.Node<int> SeedNode(BinaryTree binaryTree)
         {
-            NodeWars.Node<int> root = null;
+            BinaryTree.Node<int> root = null;
             var numbers = new[] { 3, 5, 1, 8, 2, 4, 6, 9, 7 };
             foreach (var number in numbers)
-                root = nodeWars.Insert(root, number);
+                root = binaryTree.Insert(root, number);
             return root;
         }
 
