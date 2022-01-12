@@ -1,8 +1,11 @@
-﻿namespace thirdconspiracy.Utilities.RateLimiter
+﻿using System.Threading.Tasks;
+using thirdconspiracy.Utilities.RateLimiter.Models;
+
+namespace thirdconspiracy.Utilities.RateLimiter.Contracts
 {
     public interface IRateLimiter
     {
-        void TryWait(params RateLimiterConfig[] config);
+        Task TryWait(params RateLimiterConfig[] config);
     }
 
     /*

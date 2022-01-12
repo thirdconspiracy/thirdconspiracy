@@ -1,10 +1,16 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
+using System.Threading.Tasks;
+using thirdconspiracy.Utilities.RateLimiter.Contracts;
+using thirdconspiracy.Utilities.RateLimiter.Exceptions;
+using thirdconspiracy.Utilities.RateLimiter.Models;
+using thirdconspiracy.Utilities.RateLimiter.Repo;
 
 namespace thirdconspiracy.Utilities.RateLimiter
 {
-    public class RateLimiter : IRateLimiter
+    public class PollingRateLimiter : IRateLimiter
     {
         #region Member Variables
 
@@ -14,29 +20,38 @@ namespace thirdconspiracy.Utilities.RateLimiter
 
         #region CTOR
 
-        internal RateLimiter(IRateLimitRepository repo)
+        internal PollingRateLimiter(RateLimitRepositoryFactory factory)
         {
-            _repo = repo;
+            _repo = factory.Create();
         }
 
         #endregion CTOR
 
         #region Wait
 
-        public void TryWait(params RateLimiterConfig[] rateLimitConfigs)
+        public async Task TryWait(params RateLimiterConfig[] rateLimitConfigs)
         {
             var rateLimiters = rateLimitConfigs
-                .Select(GetDbConfig)
+                .Select(GetRepoConfigs)
                 .ToList();
 
             try
             {
-                AllocateTokens(rateLimiters);
-                ConsumeTokens(rateLimiters);
+                //Allocated tokens are either consumed or manually released
+                foreach (var rateLimiter in rateLimiters)
+                {
+                    rateLimiter.AllocationTime = await TryAllocateToken(rateLimiter);
+                }
+
+                //Consumed tokens only expire after TTL
+                foreach (var rateLimiter in rateLimiters)
+                {
+                    await _repo.ConsumeAllocatedToken(rateLimiter);
+                }
             }
             catch (Exception)
             {
-                ReleaseAllocations(rateLimiters);
+                await ReleaseAllocations(rateLimiters);
                 throw;
             }
         }
@@ -45,9 +60,9 @@ namespace thirdconspiracy.Utilities.RateLimiter
 
         #region Configure
 
-        private DbRateLimiterConfig GetDbConfig(RateLimiterConfig config)
+        private RepositoryConfig GetRepoConfigs(RateLimiterConfig config)
         {
-            var dbConfig = new DbRateLimiterConfig
+            var dbConfig = new RepositoryConfig
             {
                 RequestTimeout = config.RequestTimeout
             };
@@ -88,57 +103,37 @@ namespace thirdconspiracy.Utilities.RateLimiter
 
         #region Allocate
 
-        private void AllocateTokens(List<DbRateLimiterConfig> rateLimiters)
+        private async Task<DateTimeOffset> TryAllocateToken(RepositoryConfig config)
         {
-            foreach (var rateLimiter in rateLimiters)
-            {
-                rateLimiter.AllocationTime = TryAllocateToken(rateLimiter);
-            }
-        }
+            var watch = new Stopwatch();
 
-        private DateTimeOffset TryAllocateToken(DbRateLimiterConfig config)
-        {
-            var startDate = DateTimeOffset.UtcNow;
-            for (var current = startDate;
-                current - startDate < config.RequestTimeout;
-                current = DateTimeOffset.UtcNow)
+            watch.Start();
+            do
             {
-                var expirationDate = current.Subtract(config.OperationsInterval);
-                var tokenCount = _repo.GetTokenCount(config.StorageKey, expirationDate);
+                var expirationDate = DateTimeOffset.Now.Subtract(config.OperationsInterval);
+                var tokenCount = await _repo.GetTokenCount(config, expirationDate);
                 if (tokenCount >= config.MaxTokens)
                 {
                     //TODO: dynamic backoff sleep or retry class (move to top)
-                    System.Threading.Thread.Sleep(TimeSpan.FromSeconds(5));
+                    await Task.Delay(TimeSpan.FromMilliseconds(500));
                     continue;
                 }
-
-                _repo.AllocateToken(config);
-                return current;
+                await _repo.AllocateToken(config);
+                return DateTimeOffset.Now;
             }
+            while (watch.Elapsed < config.RequestTimeout);
+
             throw new RateLimitTimeoutException($"Could not get a token in '{config.RequestTimeout.Seconds}' seconds");
         }
 
         #endregion Allocate
-
-        #region Consume
-
-        private void ConsumeTokens(List<DbRateLimiterConfig> rateLimiters)
-        {
-            foreach (var rateLimiter in rateLimiters)
-            {
-                _repo.ConsumeAllocatedToken(rateLimiter);
-            }
-        }
-
-        #endregion Consume
-
         #region Release
 
-        private void ReleaseAllocations(List<DbRateLimiterConfig> rateLimiters)
+        private async Task ReleaseAllocations(List<RepositoryConfig> rateLimiters)
         {
             foreach (var rateLimiter in rateLimiters)
             {
-                _repo.ReleaseAllocation(rateLimiter);
+                await _repo.ReleaseAllocation(rateLimiter);
             }
         }
 

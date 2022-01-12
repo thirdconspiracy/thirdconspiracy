@@ -1,4 +1,4 @@
-﻿namespace thirdconspiracy.Utilities.RateLimiter
+﻿namespace thirdconspiracy.Utilities.RateLimiter.Models
 {
     public enum RateLimiterType
     {

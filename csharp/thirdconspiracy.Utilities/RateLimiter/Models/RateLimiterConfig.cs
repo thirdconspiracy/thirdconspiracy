@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace thirdconspiracy.Utilities.RateLimiter
+namespace thirdconspiracy.Utilities.RateLimiter.Models
 {
     public class RateLimiterConfig
     {
