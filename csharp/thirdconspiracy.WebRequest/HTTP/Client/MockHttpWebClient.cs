@@ -31,7 +31,7 @@ namespace thirdconspiracy.WebRequest.HTTP.Client
             try
             {
                 response = MockSend(request);
-                return response;
+                return await Task.FromResult(response);
             }
             catch (Exception e)
             {
