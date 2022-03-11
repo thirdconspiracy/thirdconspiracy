@@ -13,8 +13,8 @@ namespace CodeWars.Test.LeetCode
             var actual = Reverse(x);
             Assert.AreEqual(expected, actual);
             
-            //actual = ReverseInlineIntCheck(x);
-            //Assert.AreEqual(expected, actual);
+            actual = ReverseInlineIntCheck(x);
+            Assert.AreEqual(expected, actual);
         }
 
         public int ReverseInlineIntCheck(int x)
@@ -41,16 +41,16 @@ namespace CodeWars.Test.LeetCode
             if (x < 10 && x > -10)
                 return x;
         
-            long r = 0;
-            while (x > 0)
+            long result = 0;
+            while (x != 0)
             {
-                r = r*10 + x%10;
-                x = x/10;
+                result = result*10 + x%10;
+                x /= 10;
             }
         
-            if (r > int.MaxValue || r < int.MinValue)
+            if (result > int.MaxValue || result < int.MinValue)
                 return 0;
-            return (int)r;
+            return (int)result;
         } 
     }
 }
