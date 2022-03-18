@@ -63,17 +63,18 @@ $NewEnd = "</sub></span>"
 .\ReplaceIT.ps1 -File $FullName -Find "<p></p>|</b><b>|</i><i>|<div>|</div>|<br clear=all>" -Replace ""
 .\ReplaceIT.ps1 -File $FullName -Find "<style>(.*`r`n)*</style>" -Replace "<style>.subsection { margin-left: 20px; }\r\n body { font-family:-apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif }\r\n</style>"
 
-# duplicate tags
-.\ReplaceIT.ps1 -File $FullName -Find "</strong><strong>" -Replace ""
-
 # remove class, name, and style
-.\ReplaceIT.ps1 -File $FullName -Find 'class=".*"' -Replace ""
+.\ReplaceIT.ps1 -File $FullName -Find 'class="(.*?)"' -Replace ""
 .\ReplaceIT.ps1 -File $FullName -Find '  ' -Replace " "
-.\ReplaceIT.ps1 -File $FullName -Find 'style=".*"' -Replace ""
+.\ReplaceIT.ps1 -File $FullName -Find 'style="(.*?)"' -Replace ""
 .\ReplaceIT.ps1 -File $FullName -Find '  ' -Replace " "
-.\ReplaceIT.ps1 -File $FullName -Find 'name=".*"' -Replace ""
+.\ReplaceIT.ps1 -File $FullName -Find 'name="(.*?)"' -Replace ""
 .\ReplaceIT.ps1 -File $FullName -Find '  ' -Replace " "
 .\ReplaceIT.ps1 -File $FullName -Find ' >' -Replace ">"
+
+# duplicate tags
+.\ReplaceIT.ps1 -File $FullName -Find "</strong><strong>|</em><em>" -Replace ""
+.\ReplaceIT.ps1 -File $FullName -Find "<a></a>|</a><a>" -Replace ""
 
 # <b> and <i> => <strong> and <em>
 .\ReplaceIT.ps1 -File $FullName -Find "`r`n</i>" -Replace "</i>"
@@ -123,7 +124,6 @@ $NewEnd = "</li>"
 # FHWA
 .\ReplaceIT.ps1 -File $FullName -Find '<html>' -Replace '<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"><html xmlns="http://www.w3.org/1999/xhtml" xml:lang="en-US" lang="en-US">'
 .\ReplaceIT.ps1 -File $FullName -Find "<br>" -Replace "<br />"
-.\ReplaceIT.ps1 -File $FullName -Find '<p><a name=' -Replace '<p class="title"><a name='
 
 
 # M$ space character !IMPORTANT!
