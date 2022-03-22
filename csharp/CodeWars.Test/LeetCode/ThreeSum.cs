@@ -28,7 +28,7 @@ public class ThreeSumTests
     {
         var expected = JsonConvert.DeserializeObject<List<List<int>>>(json);
         var actual = ThreeSum(nums);
-        CollectionAssert.AreEqual(expected, actual);
+        CollectionAssert.AreEquivalent(expected, actual);
     }
 
     public IList<IList<int>> ThreeSum(int[] nums)
