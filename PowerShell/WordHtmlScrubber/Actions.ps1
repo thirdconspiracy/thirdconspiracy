@@ -69,6 +69,7 @@ $NewEnd = "</sub></span>"
 .\ReplaceIT.ps1 -File $FullName -Find 'style="(.*?)"' -Replace ""
 .\ReplaceIT.ps1 -File $FullName -Find '  ' -Replace " "
 .\ReplaceIT.ps1 -File $FullName -Find 'name="(.*?)"' -Replace ""
+.\ReplaceIT.ps1 -File $FullName -Find 'name=[a-zA-Z0-9]+' -Replace ""
 .\ReplaceIT.ps1 -File $FullName -Find '  ' -Replace " "
 .\ReplaceIT.ps1 -File $FullName -Find ' >' -Replace ">"
 
@@ -296,3 +297,12 @@ $NewEnd = "</li>"
 .\ReplaceIT.ps1 -File $FullName -Find "`r`n`r`n`r`n" -Replace "`r`n`r`n"
 .\ReplaceIT.ps1 -File $FullName -Find "`r`n`r`n`r`n" -Replace "`r`n`r`n"
 .\ReplaceIT.ps1 -File $FullName -Find "`r`n`r`n`r`n" -Replace "`r`n`r`n"
+
+# Garmin T&C Specific
+.\ReplaceIT.ps1 -File $FullName -Find '&#8220;' -Replace '"'
+.\ReplaceIT.ps1 -File $FullName -Find '&#8221;' -Replace '"'
+.\ReplaceIT.ps1 -File $FullName -Find '&#8217;' -Replace "'"
+.\ReplaceIT.ps1 -File $FullName -Find '&quot;' -Replace '"'
+.\ReplaceIT.ps1 -File $FullName -Find '<a>(.*?)</a>' -Replace '$1'
+.\ReplaceIT.ps1 -File $FullName -Find '</strong> <strong>' -Replace ' '
+.\ReplaceIT.ps1 -File $FullName -Find '"<strong>(.*?)</strong>"' -Replace '<strong>"$1"</strong>'

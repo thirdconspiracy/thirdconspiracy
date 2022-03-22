@@ -20,7 +20,7 @@ Write-Host "Files to scrub:"
 ForEach ( $Child in $Folders ) {
 
     If ( $Child.Extension -eq ".htm" ) {
-        write-host "$Child"
+        write-host " * $Child"
     }
 }
 
