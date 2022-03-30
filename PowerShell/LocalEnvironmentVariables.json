@@ -1,0 +1,10 @@
+{
+   "Value" : "c:\\Program Files (x86)\\Microsoft Visual Studio\\2019\\Professional\\MSBuild\\Current\\Bin\\MSBuild.exe",
+   "System" : [
+      { "Variable" : "ASPNETCORE_ENVIRONMENT", "Value" : "Development" },
+      { "Variable" : "msbuild", "Value" : "c:\\Program Files\\Microsoft Visual Studio\\2022\\Professional\\MSBuild\\Current\\Bin\\MSBuild.exe" }
+   ],
+   "User" : [
+      { "Variable" : "ASPNETCORE_ENVIRONMENT", "Value" : "Development" }
+   ]
+}
