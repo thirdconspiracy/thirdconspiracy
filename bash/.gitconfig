@@ -1,3 +1,5 @@
+[core]
+	hooksPath = C:/Program Files/Git/mingw64/share/git-core/templates/hooks
 [user]
 	name = brantley.blanchard
 	email = brantley.blanchard@channeladvisor.com
