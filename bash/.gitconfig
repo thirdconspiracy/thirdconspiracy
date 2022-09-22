@@ -42,7 +42,7 @@
 	dev = "!f() { git fetch; git checkout -b feature/$1 --track origin/master; git info; }; f"
 	go = "!git fetch && git rebase origin/master && git mkbr; git info; git echo 'Note: Verify Build https://devops.url'"
 	sync = "!git info; git pull && git push; git info"
-	rmbr = "push origin --delete"
+	rmbr = "!BRANCH-$1;git info;b() { git push origin --delete $(git branch-name); };s() { git push origin --delete $BRANCH; };r() { if [ -z \"$BRANCH\" ];then b;else s; fi; };r"
 	review = "!sha=$1; git info; b() { total=$(git diff | wc -l); if [ $total -eq \"0\" ]; then git difftool --dir-diff --cached; else git difftool --dir-diff; fi; }; s() { git difftool --dir-diff $sha^ $sha; }; r() { if [ -z \"$1\" ]; then b; else s; fi; }; r"
     cached = difftool --dir-diff --cached
 	branch-name = !git rev-parse --abbrev-ref HEAD
