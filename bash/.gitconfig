@@ -2,7 +2,6 @@
 	hooksPath = C:/Program Files/Git/mingw64/share/git-core/templates/hooks
 [user]
 	name = brantley.blanchard
-	email = brantley.blanchard@channeladvisor.com
 [diff]
 	tool = bc3
 [difftool]
@@ -28,7 +27,7 @@
 [winUpdater]
 	recentlySeenVersion = 2.21.0.windows.1
 [bitbucket]
-	url = https://bitbucket.channeladvisor.com/rest/api/latest/projects/CA/repos/complete/pull-requests
+	url = https://bitbucket.team.com/rest/api/latest/projects/proj/repos/rep/pull-requests
 	token = my+token
 [alias "pr"]
 	m = "!f() { B=$(git branch-name);D=$(git pr.data $B master);U=$(git config --get bitbucket.url);J=$(git pr.json);T=$(git pr.token);C=$(echo curl -X POST $U -H $T -H $J -d $D;); eval $C; }; f"
