@@ -1,0 +1,24 @@
+<div class="results-card">
+  <h3 class="results-title">Statistics</h3>
+
+  <table class="results-table">
+    <thead>
+    <tr>
+      <th>Points</th>
+      <th>Votes</th>
+    </tr>
+    </thead>
+    <tbody>
+      @for (row of estimateCounts; track row.estimate) {
+        <tr>
+          <td>
+            {{ getEstimateDisplay(row.estimate) }}
+          </td>
+          <td>
+            {{ consensusEstimate === row.estimate ? 'Consensus!' : row.count }}
+          </td>
+        </tr>
+      }
+    </tbody>
+  </table>
+</div>

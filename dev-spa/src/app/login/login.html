@@ -1,0 +1,26 @@
+<div class="login-container">
+  <div class="login-card">
+    <h2>Welcome to Pointing Poker</h2>
+
+    <form [formGroup]="loginForm" (ngSubmit)="onLogin()">
+      <div class="form-group">
+        <label for="username">Your Name:</label>
+        <input
+          id="username"
+          type="text"
+          formControlName="username"
+          placehodler="Enter your name"
+          [class.error]="usernameHasError"
+        />
+        @if (usernameHasError) {
+          <div class="error-message">
+            Name is required
+          </div>
+        }
+      </div>
+      <button type="submit" [disabled]="loginForm.invalid" class="login-btn">
+        Continue
+      </button>
+    </form>
+  </div>
+</div>

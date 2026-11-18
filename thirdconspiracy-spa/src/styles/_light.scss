@@ -1,0 +1,45 @@
+:root,
+[data-theme='light'] {
+  color-scheme: light;
+
+  /* ==== SURFACES ==== */
+  --color-bg: #ffffff;
+  --color-surface: #f5f5f5;
+  --color-card: #ffffff;
+  --color-backdrop: rgb(0 0 0 / 0.35);
+
+  /* ==== TEXT ==== */
+  --color-text: #1a1a1a;
+  --color-text-muted: #666666; /* Hints, headers, button labels */
+  --color-text-faint: #8a8a8a; /* Placeholders, secondary rows */
+
+  /* ==== LINES ==== */
+  --color-border: #dddddd; /* Controls */
+  --color-divider: #eeeeee; /* Between rows and sections */
+
+  /* ==== BRAND ==== */
+  --color-primary: #006399;
+  --color-primary-tint: #e5f8ff; /* Selected and hover washes */
+  --color-on-primary: #ffffff; /* Text on solid primary */
+
+  /* ==== STATUS ==== */
+  --color-danger: #b3261e;
+  --color-danger-tint: color-mix(in srgb, var(--color-danger) 8%, transparent);
+
+  /* ==== ACCENTS ==== */
+  /* Ribbons, 2nd ribbons, panels */
+  --color-accent: rgb(0 0 0 / 0.065);
+  --color-accent-subtle: rgb(0 0 0 / 0.055);
+  --color-hover: rgb(0 0 0 / 0.04);
+
+  /* ==== SOFT BUTTONS ==== */
+  --button-bg: rgb(255 255 255 / 0.7);
+  --button-bg-hover: var(--color-card);
+  --button-icon: #cacaca;
+
+  /* ==== SHADOWS ==== */
+  --shadow-sm: 0 1px 2px rgba(0, 0, 0, 0.05); /* Subtle elevation */
+  --shadow-md: 0 2px 4px rgba(0, 0, 0, 0.1); /* Headers, navigation */
+  --shadow-lg: 0 2px 8px rgba(0, 0, 0, 0.1); /* Cards, modals */
+  --shadow-xl: 0 4px 8px rgba(0, 0, 0, 0.15); /* Popovers, dropdowns */
+}

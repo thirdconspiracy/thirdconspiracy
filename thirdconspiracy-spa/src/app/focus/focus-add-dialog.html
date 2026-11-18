@@ -1,0 +1,48 @@
+<dialog
+  #dialog
+  class="dialog"
+  closedby="any"
+  aria-labelledby="focus-add-heading"
+  aria-describedby="focus-add-hint"
+  (close)="closed.emit()"
+>
+  <form class="form-stack" (submit)="submit($event)">
+    <h2 id="focus-add-heading">Add Song</h2>
+    <p id="focus-add-hint" class="hint">Choose an MP3 you own. It's saved in this browser only, never uploaded.</p>
+
+    <label for="focus-add-file">MP3 File</label>
+    <input
+      #fileInput
+      id="focus-add-file"
+      class="input"
+      type="file"
+      accept=".mp3,audio/mpeg"
+      required
+      (change)="onFile(fileInput)"
+    />
+
+    <label for="focus-add-title">Title</label>
+    <input
+      #titleInput
+      id="focus-add-title"
+      class="input"
+      type="text"
+      maxlength="100"
+      autocomplete="off"
+      required
+      [value]="title()"
+      (input)="title.set(titleInput.value)"
+    />
+
+    @if (error(); as message) {
+      <p class="alert-danger" role="alert">{{ message }}</p>
+    }
+
+    <div class="form-actions">
+      <button type="button" class="btn-soft" (click)="close()">Cancel</button>
+      <button type="submit" class="btn-soft btn-soft-primary" [disabled]="!file() || !title().trim() || saving()" >
+        {{ saving() ? 'Adding...' : 'Add' }}
+      </button>
+    </div>
+  </form>
+</dialog>

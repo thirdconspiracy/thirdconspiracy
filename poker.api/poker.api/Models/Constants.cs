@@ -15,7 +15,7 @@ public static class Constants
     {
         public const string ReceiveTable = "ReceiveTable";
         public const string ReceivePlayerChange = "ReceviePlayerChange";
-        public const string ReceiveKicked = "ReceivedKicked";
+        public const string ReceiveDisconnected = "ReceiveDisconnected";
 		public const string ReceiveDeal = "ReceiveDeal";
 		public const string ReceiveShow = "ReceiveShow";
 		public const string ReceiveNudge = "ReceiveNudge";

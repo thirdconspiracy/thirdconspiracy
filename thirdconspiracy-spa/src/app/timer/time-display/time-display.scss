@@ -1,0 +1,22 @@
+:host {
+  display: block;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.2;
+  text-align: center;
+}
+
+:host([data-format='hh:mm:ss']) {
+  font-size: min(3.25rem, 26cqi);
+}
+
+:host([data-format='mm:ss']) {
+  font-size: min(3.5rem, 40cqi);
+}
+
+:host([data-format='s']) {
+  font-size: min(3.75rem, 85cqi);
+}
+
+:host(.paused) {
+  color: var(--color-text-ghost);
+}

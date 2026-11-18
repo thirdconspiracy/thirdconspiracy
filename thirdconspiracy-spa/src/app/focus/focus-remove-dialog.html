@@ -1,0 +1,23 @@
+<dialog
+  #dialog
+  class="dialog"
+  closedby="any"
+  role="alertdialog"
+  aria-labelledby="focus-remove-heading"
+  aria-describedby="focus-remove-hint"
+  (close)="closed.emit()"
+>
+  <h2 id="focus-remove-heading">Remove song?</h2>
+  <p id="focus-remove-hint" class="hint">
+    "{{ track().title }}" will be deleted from this browser. You can add the MP3 again anytime.
+  </p>
+
+  @if (error(); as message){
+    <p class="alert-danger" role="alert">{{ message }}</p>
+  }
+
+  <div class="form-actions">
+    <button type="button" class="btn-soft" autofocus (click)="close()">Cancel</button>
+    <button type="button" class="btn-soft btn-soft-danger" [disabled]="removing()" (click)="confirm()">Remove</button>
+  </div>
+</dialog>

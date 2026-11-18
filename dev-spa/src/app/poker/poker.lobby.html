@@ -1,0 +1,40 @@
+<div class="lobby-card">
+  <div class="lobby-container">
+    <h2 class="lobby-title">Welcome to the Poker Lobby</h2>
+
+    <form id="inputGroup" [formGroup]="inputFieldGroup" name="inputGroup" novalidate (ngSubmit)="joinTable()">
+      <div class="form-group">
+        <label for="join-table-input">JoinTable</label>
+        <input
+          type="text"
+          id="join-table-input"
+          name="join-table-input"
+          formControlName="tableName"
+          placeholder="Table Name"
+          [class.error]="tableNameHasError"
+        />
+        @if (tableNameHasError){
+          <span class="error-text">Please enter a table name</span>
+        }
+      </div>
+
+      <div class="button-group">
+        <button
+          type="button"
+          class="btn btn-small btn-secondary"
+          [attr.aria-label]="'Start New Table'"
+          (click)="startNewTable()"
+        >
+          Start New Table
+        </button>
+        <button
+          type="submit"
+          class="btn btn-small btn-primary"
+          [attr.aria-label]="'Join Table'"
+        >
+          Join Table
+        </button>
+      </div>
+    </form>
+  </div>
+</div>

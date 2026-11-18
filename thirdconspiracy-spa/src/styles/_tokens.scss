@@ -1,0 +1,46 @@
+:root,
+[data-theme] {
+  /* ==== SHAPE ==== */
+  --radius-sm: 4px; /* Buttons */
+  --radius-md: 0.375rem; /* Inputs, list items, alerts */
+  --radius-lg: 0.5rem; /* Panels */
+  --radius-xl: 0.75rem; /* Cards, dialogs, popovers */
+  --radius-pill: 999px;
+
+  /* ==== FOCUS ==== */
+  --focus-outline: 2px solid var(--color-primary); /* Buttons, links */
+  --focus-ring: 0 0 0 3px color-mix(in srgb, var(--color-primary) 25%, transparent); /* Text fields */
+
+  /* ==== TYPE ==== */
+  --font-mono: ui-monospace, SFMono-Regular, Consolas, monospace;
+  --font-weight-medium: 500; /* Current selection, add buttons */
+  --font-weight-semibold: 600; /* Headings, time separators */
+  /* Barely-there, e.g. paused time */
+  --color-text-ghost: color-mix(in srgb, var(--color-text) 8%, transparent);
+
+  /* ==== NAVIGATION LISTS ==== */
+  --nav-item-hover-bg: var(--color-hover);
+  --nav-item-active-bg: var(--color-primary-tint);
+  --nav-item-active-text: var(--color-primary);
+
+  /* ==== TABLES ==== */
+  --table-head-text: var(--color-text-muted);
+  --table-head-border: var(--color-border);
+  --table-row-border: var(--color-divider);
+  --table-row-hover: color-mix(in srgb, var(--color-hover) 60%, transparent);
+  --table-row-hilight: var(--color-primary-tint);
+  --table-muted-text: var(--color-text-faint);
+
+  /* ==== BUTTONS ==== */
+  /* Soft buttons background and icon colors are per theme */
+  --button-text: var(--color-text-muted);
+  --button-text-hover: var(--color-primary);
+
+  /* Primary soft button: outlined, primary text, tinted on hover, solid when pressed */
+  --button-primary-bg: transparent;
+  --button-primary-bg-hover: var(--color-primary-tint);
+  --button-primary-text: var(--color-primary);
+  --button-primary-border: var(--color-border);
+  --button-primary-border-hover: var(--color-primary);
+  --button-primary-pressed-text: var(--color-on-primary);
+}

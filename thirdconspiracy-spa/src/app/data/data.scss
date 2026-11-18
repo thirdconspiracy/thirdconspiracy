@@ -1,0 +1,41 @@
+.data-page {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) 14rem minmax(0, 1fr);
+  align-items: start;
+  gap: 1.5rem;
+  padding-block: 1rem;
+
+  @media (max-width: 900px) {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+.card-label-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.5rem;
+}
+
+.copy-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.data-text {
+  width: 100%;
+  padding: 0.75rem;
+  font: 0.875rem / 1.5 var(--font-mono);
+  resize: vertical;
+}
+
+.actions {
+  position: sticky;
+  top: 1rem;
+  padding: 1rem 0;
+
+  @media (max-width: 900px) {
+    position: static;
+  }
+}

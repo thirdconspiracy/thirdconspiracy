@@ -1,0 +1,41 @@
+<div class="poker-grid">
+  @if (!currentUser) {
+    <div class="col-12">
+      <app-login></app-login>
+    </div>
+  } @else {
+    <div class="col-6">
+      <div class="row">
+        <app-poker-actions
+          [table]="table"
+          [currentPlayer]="currentPlayer"
+          (dealClicked)="notifyDeal()"
+          (showToggled)="toggleShow()"
+          (isPlayingToggled)="toggleIsPlaying()">
+        </app-poker-actions>
+      </div>
+
+      <div class="row">
+        <app-poker-hand [isNudged]="isNudged" (estimateSelected)="notifyEstimate($event)"></app-poker-hand>
+      </div>
+
+      <div class="row">
+        <app-poker-table
+          [table]="table"
+          (makeObserverClicked)="makeObserver($event)"
+          (nudgePlayerClicked)="nudgePlayer($event)"
+        ></app-poker-table>
+      </div>
+    </div>
+
+    <div class="col-5">
+      <div class="row">
+        @if(table?.show) {
+          <div>
+            <app-poker-results [table]="table"></app-poker-results>
+          </div>
+        }
+      </div>
+    </div>
+  }
+</div>

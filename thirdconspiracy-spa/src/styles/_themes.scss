@@ -1,0 +1,54 @@
+$emerald: #046c4e;
+$emerald-bright: #50c878;
+$ruby: #9b111e;
+$ruby-bright: #f06a8a;
+$amethyst: #9966cc;
+$antique-gold: #c9a227;
+
+/* ==== Sepia: warm paper, jewel tones ==== */
+[data-theme='jewel'] {
+  color-scheme: light;
+
+  /* ==== SURFACES ==== */
+  --color-bg: #f1e7d0;
+  --color-surface: #e7dabd;
+  --color-card: #f8f1e1;
+  --color-backdrop: rgb(59 47 36 / 0.35);
+
+  /* ==== TEXT ==== */
+  --color-text: #3b2f24;
+  --color-text-muted: #6e5f4e; /* Hints, headers, button labels */
+  --color-text-faint: #8e7f6c; /* Placeholders, secondary rows */
+
+  /* ==== LINES ==== */
+  --color-border: #d7c7a6; /* Controls */
+  --color-divider: #e5d8bc; /* Between rows and sections */
+
+  /* ==== BRAND ==== */
+  --color-primary: #{$emerald};
+  /* Selected and hover washes */
+  --color-primary-tint: color-mix(in srgb, #{$emerald} 12%, transparent);
+  --color-on-primary: #fff8ec; /* Text on solid primary */
+
+  /* ==== STATUS ==== */
+  --color-danger: #{$ruby};
+  --color-danger-tint: color-mix(in srgb, #{$ruby} 8%, transparent);
+
+  /* ==== ACCENTS ==== */
+  /* Ribbons, 2nd ribbons, panels - translucent so overlapping ribbons stack */
+  --color-accent: color-mix(in srgb, #{$antique-gold} 18%, transparent);
+  --color-accent-subtle: color-mix(in srgb, #{$antique-gold} 12%, transparent);
+  --color-hover: rgb(59 47 36 / 0.06);
+
+  /* ==== SOFT BUTTONS ==== */
+  --button-bg: color-mix(in srgb, var(--color-card) 70%, transparent);
+  --button-bg-hover: var(--color-card);
+  /* Darker than the ribbon gold so the icons stays visible on light buttons. */
+  --button-icon: #a07d18;
+
+  /* ==== SHADOWS ==== */
+  --shadow-sm: 0 1px 2px rgba(59, 47, 0, 0.3); /* Subtle elevation */
+  --shadow-md: 0 2px 4px rgba(59, 47, 0, 0.4); /* Headers, navigation */
+  --shadow-lg: 0 2px 8px rgba(59, 47, 0, 0.45); /* Cards, modals */
+  --shadow-xl: 0 4px 12px rgba(59, 47, 0, 0.55); /* Popovers, dropdowns */
+}

@@ -1,0 +1,72 @@
+<button
+  type="button"
+  class="focus-trigger btn-ghost btn-round"
+  popovertarget="focus-panel"
+  title="Focus Zone"
+  [class.active]="anyPlaying()"
+  [attr.aria-label]="anyPlaying() ? 'Focus Zone (playing)' : 'Focus Zone'"
+>
+  <svg viewBox="0 0 24 24" aria-hidden="true">
+    <path
+      d="M12 3a9 9 0 0 0-9 9v7a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-4a2 2 0 0 0-2-2H5v-1a7 7 0 0 1 14 0v1h-2a2 2 0 0 0-2 2v4a2 2 0 0 0 2 2h2a2 2 0 0 0 2-2v-7a9 9 0 0 0-9-9z"
+    />
+  </svg>
+  @if (anyPlaying()) {
+    <span class="playing-dot" aria-hidden="true"></span>
+  }
+</button>
+
+<div id="focus-panel" class="focus-panel popover" popover aria-labelledby="focus-title">
+  <h2 id="focus-title" class="card-title">Focus Zone</h2>
+  <p class="subtitle">Mix noise and music to help you concentrate</p>
+
+  <section aria-label="Noise">
+    <h3 class="eyebrow">Noise</h3>
+    <app-focus-player
+      name="Noise"
+      [options]="noiseTypes"
+      [selected]="noise.type()"
+      [playing]="noise.playing()"
+      [volume]="noise.volume()"
+      [muted]="noise.muted()"
+      [error]="noise.error()"
+      (playToggle)="noise.toggle()"
+      (optionSelect)="noise.setType($any($event))"
+      (volumeChange)="noise.setVolume($event)"
+      (muteToggle)="noise.toggleMute()"
+    />
+  </section>
+
+  <section aria-label="Music">
+    <h3 class="eyebrow">Music</h3>
+    <app-focus-player
+      name="Music"
+      emptyText="No songs yet"
+      addLabel="Add song"
+      [removable]="true"
+      [options]="trackOptions()"
+      [selected]="music.track()?.id ?? null"
+      [playing]="music.playing()"
+      [volume]="music.volume()"
+      [muted]="music.muted()"
+      [repeat]="music.repeat()"
+      [error]="music.error()"
+      (playToggle)="music.toggle()"
+      (optionSelect)="music.selectTrack($event)"
+      (volumeChange)="music.setVolume($event)"
+      (muteToggle)="music.toggleMute()"
+      (repeatToggle)="music.toggleRepeat()"
+      (optionRemove)="confirmRemove($event)"
+      (add)="adding.set(true)"
+    />
+  </section>
+
+  <!-- Dialogs live inside the popover so interacting with them doesn't dismiss it. -->
+  @if (adding()) {
+    <app-focus-add-dialog (closed)="adding.set(false)" />
+  }
+  @if (removing(); as track){
+    <app-focus-remove-dialog [track]="track" (closed)="removing.set(null)" />
+  }
+
+</div>

@@ -1,0 +1,27 @@
+<nav class="nav">
+  <a class="logo" routerLink="/" aria-label="Home"><span class="logo-mark" aria-hidden="true"></span></a>
+  <a routerLink="/data" routerLinkActive="active">Data</a>
+  <a routerLink="/timer" routerLinkActive="active">Timers</a>
+  <a routerLink="/poker" routerLinkActive="active">Pointing Poker</a>
+  <span class="spacer"></span>
+  <app-focus-menu />
+  <div class="theme-toggle" role="radiogroup" aria-label="Color theme">
+    <label title="Light">
+      <input type="radio" name="theme" value="light" [checked]="theme() === 'light'" (change)="theme.set('light')" />
+      <span aria-label="Light">☀️</span>
+    </label>
+    <label title="Jewel">
+      <input type="radio" name="theme" value="jewel" [checked]="theme() === 'jewel'" (change)="theme.set('jewel')" />
+      <span aria-label="Jewel">💎</span>
+    </label>
+    <label title="Dark">
+      <input type="radio" name="theme" value="dark" [checked]="theme() === 'dark'" (change)="theme.set('dark')" />
+      <span aria-label="Dark">🌙</span>
+    </label>
+  </div>
+  <app-user-menu />
+</nav>
+
+<main>
+  <router-outlet />
+</main>

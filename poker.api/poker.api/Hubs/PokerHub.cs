@@ -67,7 +67,7 @@ public class PokerHub(IPokerService pokerService) : Hub
         await NotifyTable(tableId, Constants.HubMethods.ReceivePlayerChange, player);
     }
 
-    public async Task KickPlayer(string tableId, string connectionId)
+    public async Task NotifySub(string tableId, string connectionId)
     {
         var player = await pokerService.SetIsPlaying(tableId, connectionId, false);
         if (player == null)
@@ -94,7 +94,7 @@ public class PokerHub(IPokerService pokerService) : Hub
             return;
 
         await Groups.RemoveFromGroupAsync(Context.ConnectionId, player.GroupName);
-        await NotifyTable(table.Id, Constants.HubMethods.ReceiveKicked, Context.ConnectionId);
+        await NotifyTable(table.Id, Constants.HubMethods.ReceiveDisconnected, Context.ConnectionId);
         
         await base.OnDisconnectedAsync(exception);
     }

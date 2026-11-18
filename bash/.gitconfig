@@ -2,63 +2,39 @@
 	hooksPath = C:/Program Files/Git/mingw64/share/git-core/templates/hooks
 [user]
 	name = brantley.blanchard
-[diff]
-	tool = bc3
-[difftool]
-	prompt = true
-[difftool "bc3"]
-	path = c:/Program Files/Beyond Compare 4/bcomp.exe
-[difftool "vsdiffmerge"]
-	cmd = \"C:\\Program Files (x86)\\Microsoft Visual Studio\\2017\\Professional\\Common7\\IDE\\CommonExtensions\\Microsoft\\TeamFoundation\\Team Explorer\\vsdiffmerge.exe\" \"$LOCAL\" \"$REMOTE\" //t
-	keepBackup = false
-[merge]
-	tool = bc3
-[mergetool "bc3"]
-	path = c:/Program Files/Beyond Compare 4/bcomp.exe
-[color]
-	ui = true
-[push]
-	default = simple
-[pull]
-	rebase = true
-[branch]
+[advice]
+	skippedCherryPicks = false
 [grep]
 	patternType = perl
-[winUpdater]
-	recentlySeenVersion = 2.21.0.windows.1
-[bitbucket]
-	url = https://bitbucket.team.com/rest/api/latest/projects/proj/repos/rep/pull-requests
-	token = my+token
-[alias "pr"]
-	m = "!f() { B=$(git branch-name);D=$(git pr.data $B master);U=$(git config --get bitbucket.url);J=$(git pr.json);T=$(git pr.token);C=$(echo curl -X POST $U -H $T -H $J -d $D;); eval $C; }; f"
-	s = "!f() { B=$(git branch-name);D=$(git pr.data $B staging);U=$(git config --get bitbucket.url);J=$(git pr.json);T=$(git pr.token);C=$(echo curl -X POST $U -H $T -H $J -d $D;); eval $C; }; f"
-	d = "!f() { B=$(git branch-name);D=$(git pr.data $B develop);U=$(git config --get bitbucket.url);J=$(git pr.json);T=$(git pr.token);C=$(echo curl -X POST $U -H $T -H $J -d $D;); eval $C; }; f"
-	t = "!f() { B=$(git branch-name);D=$(git pr.data $B team/fn);U=$(git config --get bitbucket.url);J=$(git pr.json);T=$(git pr.token);C=$(echo curl -X POST $U -H $T -H $J -d $D;); eval $C; }; f"
-	json = "!echo '\"Content-Type: application/json\"'"
-	token = "!echo '\"Authorization: Bearer '$(git config --get bitbucket.token)'\"'"
-	data = !sh -c 'echo -e \"\\x27{\\\"title\\\":\\\"$1 - $2\\\",\\\"closed\\\":\\\"true\\\",\\\"fromRef\\\":{\\\"id\\\":\\\"refs/heads/$1\\\"},\\\"toRef\\\":{\\\"id\\\":\\\"refs/heads/$2\\\"""}}\\x27\"' -
+[color]
+	ui = true
+[pull]
+	rebase = true
+[push]
+	default = simple
+[diff]
+	tool = bc
+[difftool]
+	prompt = true
+[difftool "bc"]
+	path = c:/Program Files/Beyond Compare 5/bcomp.exe
+[merge]
+	tool = bc
+[mergetool]
+	prompt = false
+	keepBackup = false
+[mergetool "bc"]
+	path = c:/Program Files/Beyond Compare 5/bcomp.exe
 [alias]
-	dev = "!f() { git fetch; git checkout -b feature/$1 --track origin/master; git info; }; f"
-	go = "!git fetch && git rebase origin/master && git mkbr; git info; git echo 'Note: Verify Build https://devops.url'"
-	sync = "!git info; git pull && git push; git info"
-	rmbr = "!BRANCH-$1;git info;b() { git push origin --delete $(git branch-name); };s() { git push origin --delete $BRANCH; };r() { if [ -z \"$BRANCH\" ];then b;else s; fi; };r"
-	review = "!sha=$1; git info; b() { total=$(git diff | wc -l); if [ $total -eq \"0\" ]; then git difftool --dir-diff --cached; else git difftool --dir-diff; fi; }; s() { git difftool --dir-diff $sha^ $sha; }; r() { if [ -z \"$1\" ]; then b; else s; fi; }; r"
-    cached = difftool --dir-diff --cached
-	branch-name = !git rev-parse --abbrev-ref HEAD
-	cp = cherry-pick
-	co = "!f() { git checkout fn/feature/$1; }; f"
-	history = "!f() { git reflog -60 | grep $1; }; f"
-	contains = "!f() { git fetch | git branch -a --contains $1; }; f"
-	info = "!sha=$1; i() { git echo 'Branches' && git branch && echo && git echo 'Revisions' && git lol -8 && echo && git echo 'Edits' && git status; }; f() { git show --name-only $sha; }; r() { if [ -z \"$1\" ]; then i; else f; fi; }; r"
+	all = "!f() { cd \"${GIT_PREFIX:-.}\" || return 1; for d in */.git; do [ -e \"$d\" ] || continue; r=${d%/.git}; { git -C \"$r\" \"$@\" >/dev/null 2>&1 && echo \"$r\" || git echo \"$r\"; } & done; wait; }; f"
+	cached = difftool --dir-diff --cached
+	review = "!sha=$1; git info; b() { if git diff --quiet; then git difftool --dir-diff --cached; else git difftool --dir-diff; fi; }; s() { git difftool --dir-diff \"$sha^\" \"$sha\"; }; r() { if [ -z \"$sha\" ]; then b; else s; fi; }; r"
+	jira = "!f() { git log --oneline --reverse --pretty=\"%ad %C(yellow)%h %C(red)%an %C(reset)%s\" --perl-regexp -i --date=short --grep=\"$1\" --author=\"^((?!(unknown|BuildSvcUser)).*)$\"; }; f"
 	lol = log --oneline --graph --decorate --pretty=format:\"%ad %C(yellow)%h %C(green)%cn: %C(red)%d %Creset%s\" --date=short
-	jira = "!f() { git log --oneline --reverse --pretty=\"%ad %C(yellow)%h %C(red)%an %C(reset)%s\" --decorate --perl-regexp -i --date=short --grep=$1 --author=\"^((?!(unknown|BuildSvcUser|buildsvcuser)).*)$\"; }; f"
-	nuke = "!git clean -df;git reset;git checkout -- .;git gc;git submodule update --init;git info"
-	echo = "!tput setaf 1 && echo $1 && tput sgr0"
+	info = "!sha=$1; i() { git echo 'Branches' && git branch && echo && git echo 'Revisions' && git lol -8 && echo && git echo 'Edits' && git status; }; f() { git show --name-only $sha; }; r() { if [ -z \"$sha\" ]; then i; else f; fi; }; r"
+	branch-name = "!f() { git rev-parse --abbrev-ref HEAD 2>/dev/null; }; f"
 	alias = "!f() { git config --list | grep ^alias.$1; }; f"
-	me = "!git lol --author=brantley.blanchard"
-	hide = update-index --assume-unchanged
-	unhide = update-index --no-assume-unchanged
-	sub = submodule update --init
+	echo = "!f() { tput setaf 1 && echo $1 && tput sgr0; }; f"
+	rmbr = "!f() { b=${1:-$(git branch-name)}; case \"$b\" in ''|HEAD|main|master|develop|staging) git echo \"Refusing to delete remote branch: '$b'\"; return 1;; esac; git info; git push origin --delete \"$b\" && git fetch --prune; }; f"
 	mkbr = push -u origin HEAD
-    rmbr = "!br=$1; i() { git push origin --delete $1; }; j() { git push origin --delete $(git branch-name); }; f() { if [ -z \"$1\" ]; then j; else i; fi; }; f; git fetch; git info;"
-    swap = "!git rmbr && git fetch && git rebase origin/master && git mkbr"
+	cp = cherry-pick

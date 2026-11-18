@@ -1,0 +1,141 @@
+.timer-page {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  grid-template-rows: 2rem auto auto;
+  column-gap: 1rem;
+  // Own stacking context so the ribbons (z-index -1) sit behind the
+  // controls without slipping behind the page background
+  isolation: isolate;
+
+  // Ribbons use border-image outsets to paint past the grid (to the viewport
+  // edges / header) without causing overflow.  Where they cross, the two
+  // translucent layers stack, darkening the selected timer
+  &::before,
+  &::after {
+    content: '';
+    z-index: -1;
+  }
+
+  // Horizontal: full-bleed behind the timer row.
+  &::before {
+    grid-row: 2;
+    grid-column: 1 / -1;
+    border-image: linear-gradient(var(--color-accent) 0 0) fill 0 / 0 / 0 100vmax;
+  }
+
+  // Vertical: the selected timer's column, from the header to the bottom edge.
+  // The nav(higher z-index) covers the upward overshoot.
+  &::after {
+    grid-row: 1 / -1;
+    border-image: linear-gradient(var(--color-accent-subtle) 0 0) fill 0 / 0 / 100vmax 0;
+  }
+
+  &[data-selected='countdown']::after {
+    grid-column: 3 / span 2;
+  }
+
+  &[data-selected='alarm']::after {
+    grid-column: 5 / span 2;
+  }
+
+  &[data-selected='stopwatch']::after {
+    grid-column: 7 / span 2;
+  }
+}
+
+.timer {
+  grid-row: 2;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  padding: 1rem;
+}
+
+.output {
+  grid-row: 3;
+  container-type: inline-size;
+  display:flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 1rem;
+}
+
+.output-row {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.output-info {
+  font-size: 0.875rem;
+}
+
+// Finished timer: pulse the time in the primary color.
+.output.done app-time-display {
+  color: var(--color-primary);
+  animation: done-pulse 1s ease-in-out infinite;
+
+  @media (prefers-reduced-motion: reduce) {
+    animation: none;
+  }
+}
+
+@keyframes done-pulse {
+  50% {
+    opacity: 0.25;
+  }
+}
+
+.countdown {
+  grid-column: 3 / span 2;
+}
+
+.alarm {
+  grid-column: 5 / span 2;
+}
+
+.stopwatch {
+  grid-column: 7 / span 2;
+}
+
+.timer-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 0.25rem;
+}
+
+.time-sep {
+  font-size: 1.125rem;
+  font-weight: var(--font-weight-semibold);
+  color: var(--color-text-muted);
+}
+
+.time-box {
+  width: 3rem;
+  min-width: 0;
+  padding: 0.5rem 0.25rem;
+  font-size: 1.125rem;
+  text-align: center;
+  appearance: textfield;
+
+  &::-webkit-inner-spin-button,
+  &::-webkit-outer-spin-button {
+    appearance: none;
+    margin: 0;
+  }
+
+  &--sec {
+    width: 2.5rem;
+    padding-block: 0.365rem;
+    font-size: 0.9375rem;
+  }
+}
+
+.time-display {
+  padding: 0.5rem 0;
+  font-size: 1.125rem;
+  font-variant-numeric: tabular-nums;
+  color: var(--color-text-muted);
+}

@@ -1,0 +1,22 @@
+// Order: tokens before themes (so theme overrides win), then shared components
+@use 'styles/tokens';
+@use 'styles/light';
+@use 'styles/dark';
+@use 'styles/themes';
+@use 'styles/typography';
+@use 'styles/buttons';
+@use 'styles/inputs';
+@use 'styles/forms';
+@use 'styles/alerts';
+@use 'styles/accents';
+@use 'styles/cards';
+@use 'styles/lists';
+@use 'styles/table';
+@use 'styles/dialog';
+
+body {
+  margin: 0;
+  background: var(--color-bg);
+  color: var(--color-text);
+  font-family: system-ui, sans-serif;
+}

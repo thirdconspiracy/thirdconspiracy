@@ -1,0 +1,40 @@
+/* Native radios, checkboxes, and ranges follow the theme. */
+:root,
+[data-theme] {
+  accent-color: var(--color-primary);
+}
+
+.input {
+  box-sizing: border-box;
+  padding: 0.5rem 0.625rem;
+  font: inherit;
+  font-size: 0.875rem;
+  color: var(--color-text);
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: var(--radius-md);
+  transition:
+    border-color 0.15s,
+    box-shadow 0.15s;
+
+  &:focus {
+    outline: none;
+    border-color: var(--color-primary);
+    box-shadow: var(--focus-ring);
+  }
+
+  &[readonly] {
+    background: var(--color-surface);
+  }
+
+  &::file-selector-button {
+    margin-right: 0.75rem;
+    padding: 0.25rem 0.625rem;
+    font: inherit;
+    color: var(--button-primary-text);
+    background: var(--button-primary-bg);
+    border: 1px solid var(--button-primary-border);
+    border-radius: var(--radius-sm);
+    cursor: pointer;
+  }
+}

@@ -1,0 +1,27 @@
+/* Floating surfaces: modal <dialog class="dialog"> and <div popover class="popover"> */
+.dialog,
+.popover {
+  color: var(--color-text);
+  background: var(--color-card);
+  border: 0;
+  border-radius: var(--radius-xl);
+  box-shadow: var(--shadow-xl);
+}
+
+/*
+ * Dialog: heading, optional .hint, then a .form-stack or .form-actions.
+ * Usage: <dialog class="dialog">.
+ */
+.dialog {
+  width: min(22rem, calc(100vw - 2rem));
+  padding: 1.25rem;
+
+  &::backdrop {
+    background: var(--color-backdrop);
+  }
+
+  h2 {
+    margin: 0 0 0.25rem;
+    font-size: 1.125rem;
+  }
+}

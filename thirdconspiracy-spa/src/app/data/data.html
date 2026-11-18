@@ -1,0 +1,77 @@
+<div class="data-page">
+  <section class="card" aria-labelledby="data-input-title">
+    <h2 id="data-input-title" class="card-title">Input</h2>
+    <label class="card-label" for="data-input">{{ action().inputLabel }}</label>
+    <textarea
+      #inputBox
+      id="data-input"
+      class="input data-text"
+      rows="20"
+      spellcheck="false"
+      [value]="input()"
+      (input)="input.set(inputBox.value)"
+    ></textarea>
+  </section>
+
+  <nav class="actions" aria-labelledby="data-actions-title">
+    <h2 id="data-actions-title" class="card-title">Transform</h2>
+    <ul class="list-navigation">
+      @for (a of actions; track a.id) {
+        <li>
+          <button
+            type="button"
+            class="list-navigation-item"
+            [class.active]="a.id === action().id"
+            [attr.aria-current]="a.id === action().id ? 'true' : null"
+            (click)="select(a)"
+          >
+            {{ a.label }}
+          </button>
+        </li>
+      }
+    </ul>
+  </nav>
+
+  <section class="card" aria-labelledby="data-output-title">
+    <h2 id="data-output-title" class="card-title">Output</h2>
+    <div class="card-label-row">
+      <label class="card-label" for="data-output">{{ action().outputLabel }}</label>
+      <button
+        type="button"
+        class="btn-soft btn-soft-primary copy-btn"
+        title="Copy to clipboard"
+        [disabled]="!output()"
+        (click)="copy()"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="16"
+          height="16"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          aria-hidden="true"
+        >
+          <rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect>
+          <path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path>
+        </svg>
+        <span aria-live="polite">{{ copied() ? 'Copied' : 'Copy' }}</span>
+      </button>
+    </div>
+    @if (error(); as message) {
+      <p id="data-output-error" class="alert-danger" role="alert">{{ message }}</p>
+    }
+    <textarea
+      id="data-output"
+      class="input data-text"
+      rows="20"
+      readonly
+      spellcheck="false"
+      [value]="output()"
+      [attr.aria-describedby]="error() ? 'data-output-error' : null"
+    ></textarea>
+  </section>
+</div>

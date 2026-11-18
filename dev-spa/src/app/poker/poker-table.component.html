@@ -1,0 +1,63 @@
+@if (table?.id) {
+  <div class="table-id">
+    <span>
+      Pointing Poker Table ID: {{ table?.id }}
+      <button class="debug-toggle"
+              (click)="toggleDebug()"
+              [attr.aria-label]="toggleDebug()">
+      {{ showDebug ? '✕' : 'ⓘ' }}
+    </button>
+    </span>
+  </div>
+}
+<table class="poker-table">
+  <thead>
+  <tr>
+    <th>Player</th>
+    <th>Points</th>
+    <th>Actions</th>
+  </tr>
+  </thead>
+  <tbody>
+    @if (table) {
+      @if (showDebug) {
+        <tr class="debug-row">
+          <td colspan="3">
+            <div class="debug-infof">
+              <strong>Debug Info:</strong>
+              <pre>{{ table | json }}</pre>
+            </div>
+          </td>
+        </tr>
+      }
+      @for (player of playerList; track player.connectionId) {
+        @if (player.isPlaying) {
+          <tr>
+            <td>
+              @if (player.estimate != 0) {
+                <span style="color: green margin-right: 8px;">✓</span>
+              }
+              {{ player.name }}
+            </td>
+            <td>
+              {{ table.show ? getEstimateDisplay(player.estimate) : '****' }}
+            </td>
+            <td>
+              <button (click)="makeObserver(player.connectionId)" style="margin-right: 8px;">Kick</button>
+              <button (click)="nudgePlayer(player.connectionId)" style="margin-right: 8px;">Poke</button>
+            </td>
+          </tr>
+        }
+      }
+      @for (player of playerList; track player.connectionId) {
+        @if (!player.isPlaying) {
+          <tr class="observer">
+            <td>{{player.name}}</td>
+            <td></td>
+            <td></td>
+          </tr>
+        }
+      }
+    }
+  </tbody>
+</table>

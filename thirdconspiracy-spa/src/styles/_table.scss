@@ -1,0 +1,63 @@
+@use 'typography';
+
+.table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  font-size: 0.9375rem;
+
+  th,
+  td {
+    padding: 0.625rem 0.75rem;
+    text-align: left;
+    vertical-align: middle;
+  }
+
+  th {
+    @include typography.eyebrow;
+    color: var(--table-head-text);
+    border-bottom: 1px solid var(--table-head-border);
+  }
+
+  td {
+    border-bottom: 1px solid var(--table-row-border);
+  }
+
+  tbody tr:last-child td {
+    border-bottom: 0;
+  }
+
+  tbody tr {
+    transition: background-color 0.15s ease-in-out;
+
+    &:hover {
+      background-color: var(--table-row-hover);
+    }
+  }
+
+  .row-highlight {
+    background-color: var(--table-row-highlight);
+
+    &:hover {
+      background-color: var(--table-row-highlight);
+    }
+
+    td:first-child {
+      box-shadow: inset 3px 0 0 var(--color-primary);
+    }
+  }
+
+  .row-muted {
+    color:var(--table-muted-text);
+  }
+
+  .col-center {
+    text-align: center;
+    font-variant-numeric: tabular-nums;
+  }
+
+  .cell-accent {
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+}

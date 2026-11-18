@@ -1,0 +1,18 @@
+<div class="card-hand" [class.nudged]="isNudged">
+  <div>
+    <button class="btn-estimate" (click)="onEstimateClick(Estimate.Coffee)">Coffee</button>
+    <button class="btn-estimate" (click)="onEstimateClick(Estimate.One)">1 Point</button>
+    <button class="btn-estimate" (click)="onEstimateClick(Estimate.Two)">2 Points</button>
+    <button class="btn-estimate" (click)="onEstimateClick(Estimate.Three)">3 Points</button>
+  </div>
+  <div>
+    <button class="btn-estimate" (click)="onEstimateClick(Estimate.Five)">5 Points</button>
+    <button class="btn-estimate" (click)="onEstimateClick(Estimate.Eight)">8 Points</button>
+    <button class="btn-estimate" (click)="onEstimateClick(Estimate.Thirteen)">13 Points</button>
+    <button class="btn-estimate" (click)="onEstimateClick(Estimate.Twenty)">20 Points</button>
+  </div>
+  <div>
+    <button class="btn-estimate" (click)="onEstimateClick(Estimate.Unknown)">? Points</button>
+    <button class="btn-estimate" (click)="onEstimateClick(Estimate.Infinite)">∞ Points</button>
+  </div>
+</div>

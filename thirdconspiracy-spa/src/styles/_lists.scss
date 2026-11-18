@@ -1,0 +1,37 @@
+.list-navigation {
+  display: flex;
+  flex-direction: column;
+  gap: 0.125rem;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+.list-navigation-item {
+  display: block;
+  width: 100%;
+  padding: 0.5rem 0.75rem;
+  font: inherit;
+  font-size: 0.9375rem;
+  text-align: left;
+  color: inherit;
+  background: none;
+  border: 0;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+
+  &:hover {
+    background-color: var(--nav-item-hover-bg);
+  }
+
+  &:focus-visible {
+    outline: var(--focus-outline);
+    outline-offset: -2px;
+  }
+
+  &.active {
+    font-weight: var(--font-weight-medium);
+    color: var(--nav-item-active-text);
+    background-color: var(--nav-item-active-bg);
+  }
+}

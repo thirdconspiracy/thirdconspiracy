@@ -1,0 +1,79 @@
+<div class="timer-page" [attr.data-selected]="selected()">
+  <!-- Countdown -->
+  <section class="timer countdown" aria-label="Countdown">
+    <div class="timer-row">
+      <input #ch class="input time-box" type="number" min="0" max="99" placeholder="h" aria-label="Countdown hours" />
+      <span class="time-sep" aria-hidden="true">:</span>
+      <input #cm class="input time-box" type="number" min="0" max="59" placeholder="m" aria-label="Countdown minutes" />
+      <span class="time-sep" aria-hidden="true">:</span>
+      <input #cs class="input time-box time-box--sec" type="number" min="0" max="59" placeholder="s" aria-label="Countdown seconds" />
+    </div>
+    <div class="timer-row">
+      <button class="btn-soft btn-icon-play" type="button" (click)="startCountdown(ch.value, cm.value, cs.value)">
+        Start Countdown
+      </button>
+    </div>
+  </section>
+
+  <!-- Alarm -->
+  <section class="timer alarm" aria-label="Alarm">
+    <div class="timer-row">
+      <input #alarmH class="input time-box" type="number" min="0" max="23" placeholder="h" aria-label="Alarm hour" />
+      <span class="time-sep" aria-hidden="true">:</span>
+      <input #alarmM class="input time-box" type="number" min="0" max="59" placeholder="m" aria-label="Alarm minute" />
+      <span class="time-sep" aria-hidden="true">:</span>
+      <input #alarmS class="input time-box time-box--sec" type="number" min="0" max="59" placeholder="s" aria-label="Alarm second" />
+    </div>
+    <div class="timer-row">
+      <button class="btn-soft btn-icon-play" type="button" (click)="startAlarm(alarmH.value, alarmM.value, alarmS.value)">
+        Start Alarm
+      </button>
+    </div>
+  </section>
+
+  <!-- Stopwatch -->
+  <section class="timer stopwatch" aria-label="Stopwatch">
+    <div class="timer-row">
+      <span class="time-display">00:00:00</span>
+    </div>
+    <div class="timer-row">
+      <button class="btn-soft btn-icon-play" type="button" (click)="startStopWatch()">Start Stopwatch</button>
+    </div>
+  </section>
+
+  <!-- Only the running timer's output is shown. -->
+  @switch (active()) {
+    @case ('countdown') {
+      <section class="output countdown" aria-label="Countdown output" [class.done]="countdown.status() === 'done'">
+        <app-time-display [seconds]="countdown.remaining()" [paused]="countdown.status() === 'paused'" />
+        <div class="output-row">
+          @if (countdown.status() === 'done') {
+            <button class="btn-soft btn-icon-stop" type="button" (click)="countdown.stop()">Stop</button>
+          } @else {
+            <app-pause-resume-button [paused]="countdown.status() === 'paused'" (toggle)="countdown.toggle()" />
+          }
+        </div>
+      </section>
+    }
+    @case ('alarm') {
+      <section class="output alarm" aria-label="Alarm output" [class.done]="alarm.status() === 'done'">
+        <app-time-display [seconds]="alarm.remaining()" />
+        @if (alarm.status() === 'done') {
+          <div class="output-row">
+            <button class="btn-soft btn-icon-stop" type="button" (click)="alarm.stop()">Stop</button>
+          </div>
+        } @else if (alarm.until(); as until) {
+          <div class="output-row output-info">until {{ until | date: 'h:mm a' }}</div>
+        }
+      </section>
+    }
+    @case ('stopwatch') {
+      <section class="output stopwatch" aria-label="Stopwatch output">
+        <app-time-display [seconds]="stopwatch.elapsed()" [paused]="stopwatch.status() === 'paused'" />
+        <div class="output-row">
+          <app-pause-resume-button [paused]="stopwatch.status() === 'paused'" (toggle)="stopwatch.toggle()" />
+        </div>
+      </section>
+    }
+  }
+</div>
